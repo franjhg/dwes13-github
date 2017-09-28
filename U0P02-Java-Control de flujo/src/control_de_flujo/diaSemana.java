@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class diaSemana {
 static Scanner leer=new Scanner(System.in);
 	public static void main(String[] args) {
-
+//coment git
 		String d;
 		System.out.println("Introduzca un dia de la semana:");
 		d=leer.nextLine();
