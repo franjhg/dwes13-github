@@ -12,13 +12,28 @@ static Scanner leer=new Scanner(System.in);
 		System.out.println("3. Camiones");
 		
 		op=leer.nextInt();
-		}while(op!=3);
+		
 		switch(op) {
 		case 1:
+			do {
+				int op1;
 			System.out.println("1. Electricos");
 			System.out.println("2. Diesel");
 			System.out.println("3. Gasolina");
 			System.out.println("4. Volver al menu principal");
+			op1=leer.nextInt();
+			switch(op1) {
+			case 1:System.out.println("COCHES/ELECTRICOS");
+				break;
+			case 2:System.out.println("COCHES/DIESEL");
+				break;
+			case 3:System.out.println("COCHES/GASOLINA");
+				break;
+			case4:
+				break;
+			}
+			
+			}while();
 			break;
 		case 2:
 			System.out.println("1. Gasolina");
@@ -35,7 +50,7 @@ static Scanner leer=new Scanner(System.in);
 			break;
 		}
 		
-			
+		}while(op!=3);	
 		
 		
 	}
