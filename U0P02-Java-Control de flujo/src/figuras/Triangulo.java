@@ -19,6 +19,40 @@ public class Triangulo {
 		return base+lado1+lado2;
 	}
 
+	
+	
+	public int getBase() {
+		return base;
+	}
+
+	public void setBase(int base) {
+		this.base = base;
+	}
+
+	public int getAltura() {
+		return altura;
+	}
+
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+
+	public int getLado1() {
+		return lado1;
+	}
+
+	public void setLado1(int lado1) {
+		this.lado1 = lado1;
+	}
+
+	public int getLado2() {
+		return lado2;
+	}
+
+	public void setLado2(int lado2) {
+		this.lado2 = lado2;
+	}
+
 	@Override
 	public String toString() {
 		return "Triangulo [base=" + base + ", altura=" + altura + ", lado1=" + lado1 + ", lado2=" + lado2 + "]";
