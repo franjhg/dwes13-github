@@ -2,61 +2,46 @@ package figuras;
 
 public class Triangulo {
 
-	private int base, altura, lado1, lado2;
+	private double base, altura;
 	
-	public Triangulo(int base, int altura, int lado1, int lado2) {
+	public Triangulo(double base, double altura) {
 		this.base=base;
 		this.altura=altura;
-		this.lado1=lado1;
-		this.lado2=lado2;
+	
 	}
 	
-	public int area(int base, int altura) {
+	public double area() {
 		return (base+altura)/2;
 	}
 	
-	public int perimetro(int base, int lado1, int lado2) {
-		return base+lado1+lado2;
+	public double perimetro() {
+		return  (base+Math.sqrt((Math.pow(base, 2))+(Math.pow(altura, 2))));
 	}
 
-	
-	
-	public int getBase() {
+	public double getBase() {
 		return base;
 	}
 
-	public void setBase(int base) {
+	public void setBase(double base) {
 		this.base = base;
 	}
 
-	public int getAltura() {
+	public double getAltura() {
 		return altura;
 	}
 
-	public void setAltura(int altura) {
+	public void setAltura(double altura) {
 		this.altura = altura;
-	}
-
-	public int getLado1() {
-		return lado1;
-	}
-
-	public void setLado1(int lado1) {
-		this.lado1 = lado1;
-	}
-
-	public int getLado2() {
-		return lado2;
-	}
-
-	public void setLado2(int lado2) {
-		this.lado2 = lado2;
 	}
 
 	@Override
 	public String toString() {
-		return "Triangulo [base=" + base + ", altura=" + altura + ", lado1=" + lado1 + ", lado2=" + lado2 + "]";
+		return "Triangulo [base=" + base + ", altura=" + altura + "]";
 	}
+
+
+	
+	
 	
 	
 }

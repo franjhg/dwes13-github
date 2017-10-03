@@ -2,27 +2,27 @@ package figuras;
 
 public class Cuadrado {
 	
-	private int lado;
+	private double lado;
 	
-	public Cuadrado(int lado) {
+	public Cuadrado(double lado) {
 		this.lado=lado;
 	}
 	
-	public int area(int lado) {
+	public double area() {
 		return lado*lado;
 	}
 	
-	public int perimetro(int lado) {
+	public double perimetro() {
 		return lado*4;
 	}
 
 	
 	
-	public int getLado() {
+	public double getLado() {
 		return lado;
 	}
 
-	public void setLado(int lado) {
+	public void setLado(double lado) {
 		this.lado = lado;
 	}
 
