@@ -2,15 +2,20 @@ package figuras;
 
 public class Problema {
 	
-	private double radio1, radio2;
-	private int lado, base, altura;
+	private  Circunferencia cir1;
+	private  Circunferencia cir2;
+	private Cuadrado c;
+	private Triangulo t;
 	
-public Problema();
+	
+public Problema(Circunferencia cir1, Circunferencia cir2, Cuadrado c, Triangulo t) {
+	this.cir1=cir1;
+	this.cir2=cir2;
+	this.c=c;
+	this.t=t;
+}
 
-	/*Triangulo t1=new Triangulo(8, 15);
-	Cuadrado c1=new Cuadrado(4.2);
-	Circunferencia cir1=new Circunferencia(4.8);
-	Circunferencia cir2=new Circunferencia(1.5);*/
+	
 
 	
 	public double area(Triangulo t, Cuadrado c, Circunferencia cir1, Circunferencia cir2) {
