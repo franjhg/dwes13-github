@@ -1,6 +1,6 @@
 package figuras;
 
-public class Triangulo {
+public class Triangulo extends Figuras{
 
 	private double base, altura;
 	
@@ -10,11 +10,11 @@ public class Triangulo {
 	
 	}
 	
-	public double area() {
+	public double calcArea() {
 		return (base+altura)/2;
 	}
 	
-	public double perimetro() {
+	public double calcPerimetro() {
 		return  (base+Math.sqrt((Math.pow(base, 2))+(Math.pow(altura, 2))));
 	}
 

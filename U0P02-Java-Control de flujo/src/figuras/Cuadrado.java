@@ -1,6 +1,6 @@
 package figuras;
 
-public class Cuadrado {
+public class Cuadrado extends Figuras{
 	
 	private double lado;
 	
@@ -8,11 +8,11 @@ public class Cuadrado {
 		this.lado=lado;
 	}
 	
-	public double area() {
+	public double calcArea() {
 		return lado*lado;
 	}
 	
-	public double perimetro() {
+	public double calcPerimetro() {
 		return lado*4;
 	}
 

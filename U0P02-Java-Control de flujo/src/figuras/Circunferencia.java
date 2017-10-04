@@ -1,6 +1,6 @@
 package figuras;
 
-public class Circunferencia {
+public class Circunferencia extends Figuras{
 
 	private double radio;
 	private static double pi=3.14;
@@ -9,11 +9,12 @@ public class Circunferencia {
 		this.radio=radio;
 	}
 	
-	public double area() {
-		return 2*pi*radio;
+	public double calcArea() {
+		return Math.PI*Math.pow(radio, 2);	
 	}
-	public double perimetro() {
-		return pi*Math.pow(radio, 2);
+	public double calcPerimetro() {
+		return 2*pi*radio;
+		
 	}
 
 	public double getRadio() {
@@ -26,7 +27,8 @@ public class Circunferencia {
 
 	@Override
 	public String toString() {
-		return "Circunferencia [radio=" + radio + "]";
+		return super.toString()+
+ "Circunferencia [radio=" + radio + "]";
 	}
 	
 	
