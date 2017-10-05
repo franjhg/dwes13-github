@@ -4,18 +4,20 @@ public class Triangulo extends Figuras{
 
 	private double base, altura;
 	
-	public Triangulo(double base, double altura) {
+	public Triangulo(double base, double altura ,String color, String titulo) {
+		super.setColor(color);
+		super.setTitulo(titulo);
 		this.base=base;
 		this.altura=altura;
 	
 	}
 	
 	public double calcArea() {
-		return (base+altura)/2;
+		return (base*altura)/2.0;
 	}
 	
 	public double calcPerimetro() {
-		return  (base+Math.sqrt((Math.pow(base, 2))+(Math.pow(altura, 2))));
+		return  (base+altura+(Math.sqrt((Math.pow(base, 2))+(Math.pow(altura, 2)))));
 	}
 
 	public double getBase() {
@@ -34,10 +36,12 @@ public class Triangulo extends Figuras{
 		this.altura = altura;
 	}
 
-	@Override
+	
 	public String toString() {
-		return "Triangulo [base=" + base + ", altura=" + altura + "]";
+		return super.toString()+"Triangulo [base=" + base + ", altura=" + altura + "]";
 	}
+
+	
 
 
 	

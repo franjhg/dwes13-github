@@ -2,26 +2,38 @@ package figuras;
 
 import java.util.ArrayList;
 
-public class GestorFiguras extends Figuras{
+public class GestorFiguras {
 	
 	private ArrayList <Figuras> listaFiguras;
 	
-	public GestorFiguras() {/**Constructor que inicializa el ArrayList de Objetos de la clase Figura**/
+	/** Constructor que inicializa el ArrayList de Objetos de la clase Figura **/
+	public GestorFiguras() {
 		this.listaFiguras=new ArrayList<Figuras>();
 	}
 	
-	public void anadirFigura(Figuras f) {/**Metodo que recibe un objeto de la clase çfigura y lo añade a la lista**/
+	/**
+	 *  Metodo que recibe un objeto de la clase Figura y lo anade a la lista
+	 * @param 
+	 **/
+	public void anadirFigura(Figuras f) {
 		listaFiguras.add(f);
 	}
-	public void eliminarFigura(Figuras f) {/**Metodo que recibe un objeto de la clase çfigura y lo elimina de la lista**/
+	/** Metodo que recibe un objeto de la clase Figura y lo elimina de la lista
+	 *  @param
+	 *  **/
+	public void eliminarFigura(Figuras f) {
 		listaFiguras.remove(f);
 	}
-	public void mostrarFiguras() {/**Metodo que muestra las objetos de la lista**/
+	/** Metodo que muestra las objetos de la lista 
+	 * **/
+	public void mostrarFiguras() {
 		for (Figuras f : listaFiguras) {
 			System.out.println(f.toString());
 		}
 	}
-	public void calcularSumatorioAreas() {/**Metodo que muestra la suma de las areas de los objetos de la lista**/
+	/** Metodo que muestra la suma de las areas de los objetos de la lista 
+	 * **/
+	public void calcularSumatorioAreas() {
 		double acum=0;
 		for (Figuras f : listaFiguras) {
 			acum+=f.calcArea();
@@ -29,15 +41,5 @@ public class GestorFiguras extends Figuras{
 		}
 	}
 
-	@Override
-	public double calcArea() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double calcPerimetro() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 }

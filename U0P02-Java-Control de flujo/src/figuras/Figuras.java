@@ -2,8 +2,9 @@ package figuras;
 
 public abstract class Figuras {
 
-	private String titulo="Figura Geometrica";
-	private String color="Rojo";
+	private String titulo;
+	private String color;
+	
 
 	public abstract double calcArea();
 	public abstract double calcPerimetro();

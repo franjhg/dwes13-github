@@ -1,10 +1,11 @@
 package figuras;
-
 public class Cuadrado extends Figuras{
 	
 	private double lado;
 	
-	public Cuadrado(double lado) {
+	public Cuadrado(double lado,String color, String titulo) {
+		super.setColor(color);
+		super.setTitulo(titulo);
 		this.lado=lado;
 	}
 	
@@ -26,11 +27,8 @@ public class Cuadrado extends Figuras{
 		this.lado = lado;
 	}
 
-	@Override
+	
 	public String toString() {
-		return "Cuadrado [lado=" + lado + "]";
+		return super.toString()+ "Cuadrado [lado=" + lado + "]";
 	}
-	
-	
-
 }
