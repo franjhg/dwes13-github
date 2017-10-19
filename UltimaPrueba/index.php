@@ -1,3 +1,5 @@
+<html>
+<body></body>
 <?php
 $nombre="Franfran";
 define("CIUDAD", "Madrid");
@@ -52,16 +54,102 @@ echo $ar3[3]."</p>\n";
 
 for($i=0;$i<sizeof($ar1);$i++){
     echo $ar1[$i]."</p>\n";
+    
+
+
 }
 
-$cont=0;
-while($cont<sizeof($ar3)){
+ /* $cont=0;
+while($cont!=sizeof($ar3)){
     if(isset($ar3[$i])){
         echo $ar3[$i]."--";
         $cont++;
     }
+    $i++;
     
-    
+}  */
+
+echo "<h3>var_dump  &  print_r</h3>";
+
+var_dump($ar1);
+echo "<br/>";
+print_r($ar1);
+echo "<br/>";
+var_dump($ar3);
+echo "<br/>";
+print_r($ar3);
+
+
+echo "<h3>foreach</h3>";
+echo "<ul>";
+foreach ($ar1 as $i){
+    echo "<li>$i</li>\n";
 }
+echo "</ul>";
+echo "</br>";
+echo "<h3>Array Asociativo</h3>";
+$arAsoc=array("España"=>"Madrid", "Inglaterra"=>"Londres", "Francia"=>"Paris");
+
+print_r($arAsoc);
+echo "</br>";
+var_dump($arAsoc);
+echo "</br>";
+echo "<ul>";
+foreach ($arAsoc as $valor){
+    echo "<li>$valor</li>\n";
+}
+echo "</ul>";
+
+echo "<h3>Array Asociativo mostrando el indice</h3>";
+
+echo "</br>";
+echo "<ul>";
+foreach ($arAsoc as $valor => $indice){
+    echo "<li>La capital de $indice(indice) es $valor(valor)</li>\n";
+}
+echo "</ul>";
+
+echo "<h3>Ordenacion arrays asociativos</h3>";
+
+asort($arAsoc);
+echo "<ul>";
+foreach ($arAsoc as $valor => $indice){
+    echo "<li>La capital de $indice(indice) es $valor(valor)</li>\n";
+}
+echo "</ul>";
+
+arsort($arAsoc);
+echo "<ul>";
+foreach ($arAsoc as $valor => $indice){
+    echo "<li>La capital de $indice(indice) es $valor(valor)</li>\n";
+}
+echo "</ul>";
+
+ksort($arAsoc);
+echo "<ul>";
+foreach ($arAsoc as $valor => $indice){
+    echo "<li>La capital de $indice(indice) es $valor(valor)</li>\n";
+}
+echo "</ul>";
+
+krsort($arAsoc);
+echo "<ul>";
+foreach ($arAsoc as $valor => $indice){
+    echo "<li>La capital de $indice(indice) es $valor(valor)</li>\n";
+}
+echo "</ul>";
+
+sort($arAsoc);
+echo "<ul>";
+foreach ($arAsoc as $valor => $indice){
+    echo "<li>La capital de $indice(indice) es $valor(valor)</li>\n";
+}
+echo "</ul>";
+
+
 
 ?>
+
+
+</body>
+</html>
