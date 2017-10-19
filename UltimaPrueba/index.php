@@ -13,6 +13,9 @@ $div=$a/$b;
 $concat=$a.$b;
 
 
+
+
+
 echo "<h1>Funciona</h1>\n";
 echo "<h3>La variable es $nombre</h3>\n";
 echo 'La variable es '.$nombre.'....';

@@ -260,8 +260,22 @@ echo"<h3>Dos pruebas con la variable superglobal _SERVER</h3>";
     echo $_SERVER['PHP_SELF'];
     echo "<br/>";
     echo $_SERVER['HTTP_HOST'];
+    echo "<br/>";
 
+    
+echo"<h3>Dos pruebas de funciones: una devolverá algun tipo, la otra no</h3>";
+//Dos pruebas de funciones: una devolverá algun tipo, la otra no
 
+    $a=19;
+    $a=9;
+
+    function resta($a,$b){
+        $res=$a-$b;
+        return $res;
+    }
+    echo "$a - $b es igual a"
+
+    
  echo"<h3></h3>";
 echo "<br/>";
 ?>
