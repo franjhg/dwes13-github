@@ -27,11 +27,18 @@
            $n1=$_POST["Numero2"];
            $n2=$_POST["Numero1"];
        }
+       $v=$n1-$n2;
+       
        while($n1>$n2){
            echo"*";
+          
            $n1--;
        }
-       
+       echo "<br>";
+       for($i=1; $i<=$v;$i++){
+           echo "#";
+       }
+       echo "<br>";
        
        
     }
