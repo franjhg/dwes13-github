@@ -266,18 +266,53 @@ echo"<h3>Dos pruebas con la variable superglobal _SERVER</h3>";
 echo"<h3>Dos pruebas de funciones: una devolverá algun tipo, la otra no</h3>";
 //Dos pruebas de funciones: una devolverá algun tipo, la otra no
 
-    $a=19;
-    $a=9;
 
-    function resta($a,$b){
-        $res=$a-$b;
+
+    function resta($r1, $r2){
+        $res=$r1 - $r2;
         return $res;
     }
-    echo "$a - $b es igual a"
+    echo "La resta es igual a ".resta(8,3);
+    echo "<br/>";
 
+    function suma($s1, $s2){
+        $sum = $s1+$s2;
+        echo "La suma es $sum";
+    }
+    suma(2,3);
+ echo"<h3>Impresion de la fecha y hora con todo el detalle posible</h3>";
+ //Impresion de la fecha y hora con todo el detalle posible
+    $fech=date('h-i-s, j-m-y, it is w day');
+    echo"<h3>La fecha es $fech</h3>";
+    echo "<br/>";
+ 
+ echo"<h3>Una función que utilice una variable global</h3>";
+    //Una función que utilice una variable global
     
- echo"<h3></h3>";
-echo "<br/>";
+    $aumento=0.1;
+    function sueldo($base){
+        global $aumento;
+        $nomina=$base+$base*$aumento;
+        return $nomina;
+    }
+    echo"<p>El total a cobrar es ".sueldo(1000)."</p>";
+    echo "<br/>";
+ 
+ echo"<h3>Un formulario que reciba tu nombre y lo muestre por pantalla</h3>";
+ //Un formulario que reciba tu nombre y lo muestre por pantalla
+ if(!isset($_POST['enviar'])){
+ ?>
+    <form action="fundamentos.php" method="post">
+    Nombre: <input type="text" name="nombre">
+    <input type ="submit"name="enviar">
+    </form>
+ <?php 
+ }
+ else {
+     echo "<h3>El nombre es ".$_POST["nombre"]."</h3>";
+ }
+ 
+ echo "<br/>";
 ?>
 
 
