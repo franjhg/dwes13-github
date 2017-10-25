@@ -25,4 +25,4 @@
   	<a href="index.php">VOLVER</a>  
 </body>
 </html>
-<?php
+
