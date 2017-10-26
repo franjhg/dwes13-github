@@ -12,6 +12,7 @@
 	<a href="ecf-acumulador.php">ACUMULADOR</a><br>
 	<a href="ecf-multiplos.php">MULTIPLOS</a><br>
 	<a href="ecf-cuadrado.php">CUADRADO</a><br>
+	<a href="ecf-cuadrado2.php">CUADRADO2</a><br>
 </body>
 
 </html>
