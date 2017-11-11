@@ -1,16 +1,58 @@
 <?php
     function validarEmail($mail){
         if(!empty($mail)){
-            $errorEmail=false;
-        }else{
+            if(filter_var($mail, FILTER_VALIDATE_EMAIL) === FALSE){
             $errorEmail=true;
-        }
-        return $errorEmail;
+                }else{
+                    $errorEmail=false;
+                }
+                return $errorEmail;
+            }else{
+                $errorEmail=true;
+            }
+            return $errorEmail;
     }
-    
     function validarFecha($fecha){
         if(!empty($fecha)){
-            $errorFecha=false;
+            $dia = (int)substr($fecha, 0, 2);
+            $mes = (int)substr($fecha, 3, 2);
+            $año = (int)substr($fecha, 6, 4);
+            switch ($mes) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    if ($dia > 0 && $dia <= 31) {
+                        $errorFecha = false;
+                    } else {
+                        $errorFecha = true;
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 8:
+                case 11:
+                    if ($dia > 0 && $dia <= 30) {
+                        $errorFecha = false;
+                    } else {
+                        $errorFecha = true;
+                    }
+                    break;
+                case 2:
+                    if ($dia <= 28 && $dia >= 1) {
+                        $errorFecha = false;
+                    } else if (($dia == 29 && (($año % 4 == 0 && $año % 100 != 0) || $año % 400 == 0))) {
+                        $errorFecha = false;
+                    } else {
+                        $errorFecha = true;
+                    }
+                    break;
+            }
+             
+           // $errorFecha=false;
         }else{
             $errorFecha=true;
         }
@@ -19,9 +61,13 @@
     
     function validarContraseña($contraseña){
         if(!empty($contraseña)){
-            $errorPass=false;
+            if(($contraseña>6 && $contraseña<16) && (preg_match("[0-9a-zA-Z]",$contraseña))){
+                $errorPass=false;
+                }else{
+                $errorPass=true;
+                }
         }else{
-            $errorPass=true;
+        $errorPass=true;
         }
         return $errorPass;
     }
@@ -45,7 +91,13 @@
     
     function validarTelefono($telefono){
         if(!empty($telefono)){
-            $errorTelefono=false;
+            if(preg_match("/^[9|6|7][0-9]{8}/", $telefono)){
+                $errorTelefono=false;
+            }else{
+                $errorTelefono=true;
+            }
+            
+            
         }else{
             $errorTelefono=true;
         }

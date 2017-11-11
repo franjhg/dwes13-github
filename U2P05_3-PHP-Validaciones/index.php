@@ -6,6 +6,7 @@
 	<?php include ("validaciones.php");?>
 </head>
 <body>
+<h1>Formulario para alumnos</h1>
 <?php 
 
     if(isset($_POST["enviar"])){
@@ -52,12 +53,12 @@
 	<div>
 		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 			Email:<input type="text" name="email" value="<?php echo $email?>"><?php if($errEmail){echo "email no correcto";}?><br>
-			Fecha de nacimiento: <input type="text" name="fecha" value="<?php echo $fecha?>"><?php if($errFecha){echo "email no correcto";}?><br>
-			Contraseña: <input type="password" name="password" value="<?php echo $password?>"><?php if($errPass){echo "email no correcto";}?><br>
-			Nombre: <input type="text" name="nombre" value="<?php echo $nombre?>"><?php if($errNombre){echo "email no correcto";}?><br>
-			Apellidos: <input type="text" name="apellidos" value="<?php echo $apellidos?>"><?php if($errApellido){echo "email no correcto";}?><br>
-			Telefono: <input type="number" name="telefono" value="<?php echo $telefono?>"><?php if($errTel){echo "email no correcto";}?><br>
-			Dirección: <input type="text" name="direccion" value="<?php echo $direccion?>"><?php if($errDireccion){echo "email no correcto";}?><br>
+			Fecha de nacimiento: <input type="text" name="fecha" value="<?php echo $fecha?>"><?php if($errFecha){echo "fecha no valida";}?><br>
+			Contraseña: <input type="password" name="password" value="<?php echo $password?>"><?php if($errPass){echo "contraseña incorrecta";}?><br>
+			Nombre: <input type="text" name="nombre" value="<?php echo $nombre?>"><?php if($errNombre){echo "Debe rellenar este campo";}?><br>
+			Apellidos: <input type="text" name="apellidos" value="<?php echo $apellidos?>"><?php if($errApellido){echo "Debe rellenar este campo";}?><br>
+			Telefono: <input type="number" name="telefono" value="<?php echo $telefono?>"><?php if($errTel){echo "Debe rellenar este campo con un número de teléfono";}?><br>
+			Dirección: <input type="text" name="direccion" value="<?php echo $direccion?>"><?php if($errDireccion){echo "Debe rellenar este campo";}?><br>
 			Ciclo:<select name="ciclo" >
                         <option value="DAW">DAW</option>
                         <option value="ASIR">ASIR</option>
