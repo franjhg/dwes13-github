@@ -59,9 +59,9 @@
         return $errorFecha;
     }
     
-    function validarContraseña($contraseña){
-        if(!empty($contraseña)){
-            if(($contraseña>6 && $contraseña<16) && (preg_match("[0-9a-zA-Z]",$contraseña))){
+    function validarContraseña($password){
+        if(!empty($password)){
+            if($password>6 && $password<16){
                 $errorPass=false;
                 }else{
                 $errorPass=true;
