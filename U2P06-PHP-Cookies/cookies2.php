@@ -14,4 +14,5 @@ else {
 ?>
 <a href="<?php echo $_SERVER['PHP_SELF']?>">Enlace a esta misma página</a>
 </body>
+
 </html>
