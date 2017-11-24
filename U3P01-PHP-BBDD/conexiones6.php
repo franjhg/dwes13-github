@@ -30,7 +30,7 @@ if ($conexion->connect_errno) {
 <th>Imagen</th>
 </tr>
 <?php
-$resultado = $conexion -> query("SELECT * FROM animal ORDER BY nombre");
+$resultado = $conexion -> query("SELECT chip, nombre, especie, imagen FROM animal ORDER BY nombre");
 if($resultado->num_rows === 0) echo "<p>No hay animales en la base de datos</p>";
 while ($animal = $resultado->fetch_object('Animal')) {
     // echo $animal."<br/>"; // primer intento más sencillo
