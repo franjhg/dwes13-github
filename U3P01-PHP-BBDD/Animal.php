@@ -1,7 +1,7 @@
 <?php
 class Animal{
     
-    private $chip, $nombre, $especie, $imagen;
+    private $chip, $nombre, $tipo, $imagen;
     /**
      * @return the $chip
      */
@@ -23,7 +23,7 @@ class Animal{
      */
     public function getEspecie()
     {
-        return $this->especie;
+        return $this->tipo;
     }
 
     /**
@@ -53,9 +53,9 @@ class Animal{
     /**
      * @param field_type $especie
      */
-    public function setEspecie($especie)
+    public function setEspecie($tipo)
     {
-        $this->especie = $especie;
+        $this->tipo = $tipo;
     }
 
     /**
