@@ -26,11 +26,12 @@ if ($conexion->connect_errno) {
 	echo "<p>Error al establecer la conexión (" . $conexion->connect_errno . ") " . $conexion->connect_error . "</p>";
 }
 else {
-	echo "<p>Información de servidor: $conexion->host_info</p>";
+	echo "<p>Información de servidor: $conexion->host_info</p>";//Localhost via TCP
 	echo "<h3>Desconectando...</h3>";
 	mysqli_close($conexion);
 }
 ?>
 <!-- PRUEBAS: -->
+	<a href="indice.php">Volver al índice</a>
 </body>
 </html>

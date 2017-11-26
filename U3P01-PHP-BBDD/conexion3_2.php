@@ -44,3 +44,6 @@ echo "<h3>Desconectando...</h3>";
 mysqli_close($conexion);
 ?>
 </table>
+<a href="indice.php">Volver al índice</a>
+</body>
+</html>

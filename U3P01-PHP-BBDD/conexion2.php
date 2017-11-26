@@ -44,5 +44,7 @@ while($fila!=null) {
 }
 echo "<h3>Desconectando...</h3>";
 mysqli_close($conexion);
-?></body>
+?>
+<a href="indice.php">Volver al índice</a>
+</body>
 </html>
