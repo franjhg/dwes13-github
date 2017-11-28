@@ -6,11 +6,11 @@
 <body>
 <h2>Pruebas con la base de datos de Catalogo13</h2>
 <?php
-include('Obra.php');
 
 $servidor = "localhost";
 $usuario = "alumno";
 $clave = "alumno";
+include('Obra.php');
 
 $conexion = new mysqli($servidor,$usuario,$clave,"catalogo13");
 $conexion->query("SET NAMES 'UTF8'");
@@ -29,7 +29,7 @@ if ($conexion->connect_errno) {
 </tr>
 <?php 
 
-$resultado = $conexion -> query("SELECT * FROM obra ORDER BY IdDisco");
+/* $resultado = $conexion -> query("SELECT * FROM obra ORDER BY IdDisco");
 if($resultado->num_rows === 0) echo "<p>No hay obras en la base de datos</p>";
 while ($obra = $resultado->fetch_object('Obra')) {
    
@@ -40,15 +40,17 @@ while ($obra = $resultado->fetch_object('Obra')) {
     }else{
         $resFinal=$resultado2->fetch_assoc();
         
-    } 
+    } */
 
-
+$resultado = $conexion -> query("SELECT * from obra,autor WHERE autor.idAutor=obra.Autor");
+if($resultado->num_rows === 0) echo "<p>No hay obras en la base de datos</p>";
+while ($obra = $resultado->fetch_assoc()) {
 
     echo "<tr bgcolor='lightgreen'>";
     echo "<td>".$obra->getIdDisco()."</td>\n";
     echo "<td>".$obra->getTitulo()."</td>\n";
-    echo "<td>$resFinal[Nombre]</td>\n";
-   // echo "<td>".$obra->getNombreAutor()."</td>\n";
+    //echo "<td>$resFinal[Nombre]</td>\n";
+    echo "<td>".$obra->getNombreAutor()."</td>\n";
     //echo "<td>".$ruta1.$obra->getImagen()."</td>\n";
     echo "<td><img src='".$ruta1.$obra->getImagen()."'></td>\n";
     echo "</tr>";

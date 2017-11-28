@@ -1,7 +1,23 @@
 <?php
-class Disco{
+class Obra{
     
-       private $IdDisco, $Titulo, $Autor, $imagen;
+       private $IdDisco, $Titulo, $Autor, $imagen, $nombreAutor;
+    /**
+     * @return the $nombreAutor
+     */
+    public function getNombreAutor()
+    {
+        return $this->nombreAutor;
+    }
+
+    /**
+     * @param field_type $nombreAutor
+     */
+    public function setNombreAutor($nombreAutor)
+    {
+        $this->nombreAutor = $nombreAutor;
+    }
+
     /**
      * @return the $IdDisco
      */
@@ -70,3 +86,4 @@ class Disco{
        
     
 }
+?>
