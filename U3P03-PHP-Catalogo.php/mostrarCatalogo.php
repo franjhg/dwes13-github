@@ -40,7 +40,9 @@ if(isset( $_REQUEST["op"]) && $_REQUEST["op"]==1){
     $resultado = $conexion -> query("SELECT * FROM obra ORDER BY Autor");
 }elseif ( isset( $_REQUEST["op"]) && $_REQUEST["op"]==4){
     $resultado = $conexion -> query("SELECT * FROM obra ORDER BY Autor DESC");
-}elseif (isset($_REQUEST["NomAutor"])){
+}
+//Enlace a listado de obras por autor
+    elseif (isset($_REQUEST["NomAutor"])){
     $_REQUEST["NomAutor"]=$n;
     $resultado = $conexion-> query("SELECT autor.IdAutor,autor.Nombre,autor.Imagen,
                  obra.IdDisco,obra.Titulo, obra.imagen from obra, autor where autor.IdAutor=obra.Autor
