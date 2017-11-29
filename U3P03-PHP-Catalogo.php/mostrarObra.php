@@ -1,5 +1,4 @@
 <?php 
-//include('mostrarCatalogo.php');
 include('Obra.php');
 ?>
 <html>
@@ -33,6 +32,9 @@ if ($conexion->connect_errno) {
 <th>Imagen</th>
 </tr>
 <?php 
+
+
+
 $resultado=$conexion->query("SELECT * FROM obra, autor WHERE obra.IdDisco=$paramDisco AND obra.Autor=autor.IdAutor");
 if($resultado->num_rows === 0) echo "<p>No hay resultados para esta consulta</p>";
     $resul = $resultado->fetch_object('Obra');
@@ -42,16 +44,17 @@ echo "<tr bgcolor='lightgreen'>";
 echo "<td>".$resul->getIdDisco()."</td>\n";
 echo "<td>".$resul->getTitulo()."</td>\n";
 
-$resultado2 = $conexion -> query("SELECT Nombre FROM autor where IdAutor = ".$resul->getAutor());
-if($resultado2->num_rows === 0){
-    echo "<p>No hay nombres en la base de datos</p>";
-}else{
-    $resFinal=$resultado2->fetch_assoc();
-    
-} 
+    $resultado2 = $conexion -> query("SELECT Nombre FROM autor where IdAutor = ".$resul->getAutor());
+    if($resultado2->num_rows === 0){
+        echo "<p>No hay nombres en la base de datos</p>";
+    }else{
+        $resul2=$resultado2->fetch_assoc();
+        
+    } 
 
-echo "<td>$resFinal[Nombre]</td>\n";
+echo "<td>$resul2[Nombre]</td>\n";
 echo "<td><img src='".$ruta.$resul->getimagen()."'></td>\n";
+    
 echo "</tr>";
 
 }
@@ -60,8 +63,9 @@ echo "</tr>";
  }
 ?>
 </table>
+<a href="mostrarCatalogo.php">Volver al Catalogo</a>
 <?php 
-mysqli_free_result($resul); //Liberamos la variable $resultado  DA ERROR
+mysqli_free_result($resultado); //Liberamos la variable $resultado 
 echo "<h3>Desconectando...</h3>";
 mysqli_close($conexion);
 ?>
