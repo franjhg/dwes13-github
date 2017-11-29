@@ -8,6 +8,7 @@
 <?php
 include('Obra.php');
 
+
 $servidor = "localhost";
 $usuario = "alumno";
 $clave = "alumno";
@@ -45,9 +46,11 @@ while ($obra = $resultado->fetch_object('Obra')) {
 
 
     echo "<tr bgcolor='lightgreen'>";
-    echo "<td>".$obra->getIdDisco()."</td>\n";
+   // echo "<td>".$obra->getIdDisco()."</td>\n";
+    echo "<td><a href='mostrarObra.php?IdDisco=".$obra->getIdDisco()."'>".$obra->getIdDisco()."</a></td>\n";
     echo "<td>".$obra->getTitulo()."</td>\n";
     echo "<td>$resFinal[Nombre]</td>\n";
+   
    // echo "<td>".$obra->getNombreAutor()."</td>\n";
     //echo "<td>".$ruta1.$obra->getImagen()."</td>\n";
     echo "<td><img src='".$ruta1.$obra->getImagen()."'></td>\n";
