@@ -41,8 +41,10 @@ if(isset( $_REQUEST["op"]) && $_REQUEST["op"]==1){
 }elseif ( isset( $_REQUEST["op"]) && $_REQUEST["op"]==4){
     $resultado = $conexion -> query("SELECT * FROM obra ORDER BY Autor DESC");
 }elseif (isset($_REQUEST["NomAutor"])){
+    $_REQUEST["NomAutor"]=$n;
     $resultado = $conexion-> query("SELECT autor.IdAutor,autor.Nombre,autor.Imagen,
-                 obra.IdDisco,obra.Titulo, obra.imagen from obra, autor where autor.IdAutor=obra.Autor and autor.IdAutor=1");
+                 obra.IdDisco,obra.Titulo, obra.imagen from obra, autor where autor.IdAutor=obra.Autor
+                 and autor.IdAutor=$n");
 }else{
 
 
@@ -58,14 +60,14 @@ while ($obra = $resultado->fetch_object('Obra')) {
         echo "<p>No hay nombres en la base de datos</p>";
     }else{
         $resFinal=$resultado2->fetch_assoc();
-        
+       
     } 
 
     echo "<tr bgcolor='lightgreen'>";
    // echo "<td>".$obra->getIdDisco()."</td>\n";
     echo "<td><a href='mostrarObra.php?IdDisco=".$obra->getIdDisco()."'>".$obra->getIdDisco()."</a></td>\n";
     echo "<td>".$obra->getTitulo()."</td>\n";
-    echo "<td><a href='mostrarCatalogo.php?NomAutor=".$resFinal[Nombre]."'>".$resFinal[Nombre]."</a></td>\n";
+    echo "<td><a href='mostrarCatalogo.php?NomAutor=$resFinal[Nombre]'>".$resFinal[Nombre]."</a></td>\n";
     echo "<td><img src='".$ruta1.$obra->getImagen()."'></td>\n";
     echo "</tr>";
     //mysqli_free_result($resultado2);
