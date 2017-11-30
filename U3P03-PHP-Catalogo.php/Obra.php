@@ -2,7 +2,10 @@
 class Obra{
     
        private $IdDisco, $Titulo, $Autor, $imagen, $Nombre; //HAY QUE PONER LOS MISMOS CAMPOS QUE EN LA TABLA
-    /**
+    
+
+       
+       /**
      * @return the $nombreAutor
      */
        public function getNombreAutor()
@@ -81,6 +84,8 @@ class Obra{
     {
         $this->imagen = $imagen;
     }
+   
+  
 
     public function __toString(){
         return "";
