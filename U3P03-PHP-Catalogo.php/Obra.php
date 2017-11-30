@@ -1,21 +1,21 @@
 <?php
 class Obra{
     
-       private $IdDisco, $Titulo, $Autor, $imagen, $nombreAutor;
+       private $IdDisco, $Titulo, $Autor, $imagen, $Nombre; //HAY QUE PONER LOS MISMOS CAMPOS QUE EN LA TABLA
     /**
      * @return the $nombreAutor
      */
-    public function getNombreAutor()
+       public function getNombreAutor()
     {
-        return $this->nombreAutor;
+        return $this->Nombre;
     }
 
     /**
      * @param field_type $nombreAutor
      */
-    public function setNombreAutor($nombreAutor)
+    public function setNombreAutor($Nombre)
     {
-        $this->nombreAutor = $nombreAutor;
+        $this->Nombre = $Nombre;
     }
 
     /**
@@ -82,7 +82,9 @@ class Obra{
         $this->imagen = $imagen;
     }
 
-       
+    public function __toString(){
+        return "";
+    }
        
     
 }

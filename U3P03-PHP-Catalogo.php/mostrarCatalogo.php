@@ -1,3 +1,9 @@
+<?php 
+include('Obra.php');
+include('Conexion.php');
+?>
+
+
 <html>
 <head>
 	<title>Conexión a BBDD Catalogo13</title>
@@ -5,23 +11,6 @@
 </head>
 <body>
 <h2>Pruebas con la base de datos de Catalogo13</h2>
-<?php
-include('Obra.php');
-
-
-$servidor = "localhost";
-$usuario = "alumno";
-$clave = "alumno";
-
-$conexion = new mysqli($servidor,$usuario,$clave,"catalogo13");
-$conexion->query("SET NAMES 'UTF8'");
-$ruta1="img/";
-
-
-if ($conexion->connect_errno) {
-    echo "<p>Error al establecer la conexión (" . $conexion->connect_errno . ") " . $conexion->connect_error . "</p>";
-}
-?>
 <table style='border:0'>
 <tr style='background-color:lightblue'>
 <th>IdDisco</th>
@@ -30,46 +19,50 @@ if ($conexion->connect_errno) {
 <th>Imagen</th>
 </tr>
 <?php 
+$ruta1="img/";
+$n="";
+//Enlace a listado de obras por autor
+if (isset($_REQUEST["NomAutor"])){
+    $_REQUEST["NomAutor"]=$n;
+    $resultado2 = $conexion-> query("SELECT * FROM obra, autor WHERE autor.IdAutor=obra.Autor
+                 and autor.Nombre='.$n.'");
+    //--------PRUEBA-----------
+    if($resultado2->num_rows === 0) echo "<p>No hay obras en la base de datos</p>";
+    while ($obraPORautor = $resultado2->fetch_object('Obra')) {
+  /*   }else{
+        $obraPORautor = $resultado2->fetch_object();*/
+        echo "<p>'.$obraPORautor->getNombreAutor().'</p>";
+        echo "<p>'.$obraPORautor->getTitulo().'</p>";
+        
+    } 
+    //-------FIN PRUEBA-------
+    
+}
 
 //ORDENACION
 if(isset( $_REQUEST["op"]) && $_REQUEST["op"]==1){
-    $resultado = $conexion -> query("SELECT * FROM obra ORDER BY Titulo");
+    $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor ORDER BY Titulo");
 }elseif (isset( $_REQUEST["op"]) && $_REQUEST["op"]==2){
-    $resultado = $conexion -> query("SELECT * FROM obra ORDER BY Titulo DESC");
+    $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor ORDER BY Titulo DESC");
 }elseif (isset( $_REQUEST["op"]) && $_REQUEST["op"]==3){
-    $resultado = $conexion -> query("SELECT * FROM obra ORDER BY Autor");
+    $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor ORDER BY Autor");
 }elseif ( isset( $_REQUEST["op"]) && $_REQUEST["op"]==4){
-    $resultado = $conexion -> query("SELECT * FROM obra ORDER BY Autor DESC");
-}
-//Enlace a listado de obras por autor
-    elseif (isset($_REQUEST["NomAutor"])){
-    $_REQUEST["NomAutor"]=$n;
-    $resultado = $conexion-> query("SELECT autor.IdAutor,autor.Nombre,autor.Imagen,
-                 obra.IdDisco,obra.Titulo, obra.imagen from obra, autor where autor.IdAutor=obra.Autor
-                 and autor.IdAutor=$n");
+    $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor ORDER BY Autor DESC");
+
 }else{
 
 
-
-$resultado = $conexion -> query("SELECT * FROM obra ORDER BY IdDisco");
+$resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor ORDER BY IdDisco");
 }
 if($resultado->num_rows === 0) echo "<p>No hay obras en la base de datos</p>";
 while ($obra = $resultado->fetch_object('Obra')) {
    
-    
-    $resultado2 = $conexion -> query("SELECT Nombre FROM autor where IdAutor = ".$obra->getAutor());
-    if($resultado2->num_rows === 0){
-        echo "<p>No hay nombres en la base de datos</p>";
-    }else{
-        $resFinal=$resultado2->fetch_assoc();
-       
-    } 
 
     echo "<tr bgcolor='lightgreen'>";
    // echo "<td>".$obra->getIdDisco()."</td>\n";
     echo "<td><a href='mostrarObra.php?IdDisco=".$obra->getIdDisco()."'>".$obra->getIdDisco()."</a></td>\n";
     echo "<td>".$obra->getTitulo()."</td>\n";
-    echo "<td><a href='mostrarCatalogo.php?NomAutor=$resFinal[Nombre]'>".$resFinal[Nombre]."</a></td>\n";
+    echo "<td><a href='mostrarCatalogo.php?NomAutor=".$obra->getNombreAutor()."'>".$obra->getNombreAutor()."</a></td>\n";
     echo "<td><img src='".$ruta1.$obra->getImagen()."'></td>\n";
     echo "</tr>";
     //mysqli_free_result($resultado2);
