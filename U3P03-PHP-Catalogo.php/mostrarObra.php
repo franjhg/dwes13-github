@@ -58,7 +58,7 @@ echo "</tr>";
  }  */
 ?>
 </table>
-<a href="mostrarCatalogo.php">Volver al Catalogo</a>
+<a href="mostrarCatalogoFinal.php">Volver al Catalogo</a>
 <?php 
 mysqli_free_result($resultado); //Liberamos la variable $resultado 
 echo "<h3>Desconectando...</h3>";
