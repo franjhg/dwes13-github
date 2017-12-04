@@ -32,34 +32,38 @@ $ruta1="img/";
 //BUSQUEDA POR AUTOR CUADRO DE TEXTO
 if(isset($_POST["enviar"])){
     $busqueda=$_REQUEST["buscaObras"];//Nombre del autor
+    
+    //--------SESION
+    
+     /*    if(session_status() == PHP_SESSION_NONE){
+     session_name('idCatalogo13');
+     session_start ();
+     
+     if(isset($_POST['enviar'])){
+     $_SESSION["nomAutor"]=$busqueda;
+     // $_SESSION["nomAutor"]=$_POST['nombre'];
+     }
+    if(!session_status()==PHP_SESSION_NONE){ 
+     if(isset( $_REQUEST["op"]) && $_REQUEST["op"]==1){
+     $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor AND Autor.Nombre=$busqueda ORDER BY Titulo");
+     }elseif (isset( $_REQUEST["op"]) && $_REQUEST["op"]==2){
+     $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor AND Autor.Nombre=$busqueda ORDER BY Titulo DESC");
+     }elseif (isset( $_REQUEST["op"]) && $_REQUEST["op"]==3){
+     $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor AND Autor.Nombre=$busqueda ORDER BY Autor");
+     }elseif ( isset( $_REQUEST["op"]) && $_REQUEST["op"]==4){
+     $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor AND Autor.Nombre=$busqueda ORDER BY Autor DESC");
+     
+     }
+     //$mensaje="Damos la bienvenida a ".$_SESSION["nom"];
+     } 
+        }
+      */
+    
+    //--------FIN SESION    
+    
     $resultado = $conexion-> query("SELECT * FROM obra, autor WHERE autor.IdAutor=obra.Autor
                  and autor.Nombre='$busqueda'");
-//--------SESION
 
-  /*   if(session_status() == PHP_SESSION_NONE){
-        session_name('idCatalogo13');
-        session_start ();
-        
-        if(isset($_POST['enviar'])){
-            $_SESSION["nomAutor"]=$busqueda;
-           // $_SESSION["nomAutor"]=$_POST['nombre'];
-        }
-       
-        if(isset( $_REQUEST["op"]) && $_REQUEST["op"]==1){
-            $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor AND Autor.Nombre=$busqueda ORDER BY Titulo");
-        }elseif (isset( $_REQUEST["op"]) && $_REQUEST["op"]==2){
-            $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor AND Autor.Nombre=$busqueda ORDER BY Titulo DESC");
-        }elseif (isset( $_REQUEST["op"]) && $_REQUEST["op"]==3){
-            $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor AND Autor.Nombre=$busqueda ORDER BY Autor");
-        }elseif ( isset( $_REQUEST["op"]) && $_REQUEST["op"]==4){
-            $resultado = $conexion -> query("SELECT * FROM obra,autor WHERE autor.IdAutor=obra.Autor AND Autor.Nombre=$busqueda ORDER BY Autor DESC");
-            
-        }
-        //$mensaje="Damos la bienvenida a ".$_SESSION["nom"];
-    } */
-    
-    
-//--------FIN SESION    
 //BUSQUEDA POR AUTOR CAMPO AUTOR
 }elseif (isset($_REQUEST["NomAutor"])){
     $n=$_REQUEST["NomAutor"];
