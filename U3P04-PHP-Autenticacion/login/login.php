@@ -1,17 +1,11 @@
 <?php
 include('conexion.php');
 
-
-/*  session_name('idSesion13');
- session_start (); */
-  
- if(session_status()==PHP_SESSION_NONE){
-    session_name('idSesion13');
-    session_start ();
-}else{
+session_name('idSesion13');
+session_start ();
+if(isset($_SESSION["nombre"])){
     header("location:indice.php");
 }
-
  if(isset($_POST["enviar"])){
      $_SESSION["nombre"]=$_POST["nombre"];
      $_SESSION["contraseña"]=$_POST["contraseña"];
@@ -19,7 +13,10 @@ include('conexion.php');
      $contraseña=$_SESSION["contraseña"];
 
         $resultado = $conexion -> query("SELECT * from usuario WHERE login='$nombre'");
-        if($resultado->num_rows === 0) echo "<p>No existe el usuario o la contraseña en la base de datos</p>";
+        if($resultado->num_rows === 0){ 
+            echo "<p>No existe el usuario o la contraseña en la base de datos</p>";
+            echo "<a href='login.php'>Volver a intentar</a>";
+        }
         while ($usu = $resultado->fetch_assoc()) {
             
             if($usu["login"]==$contraseña){
@@ -42,7 +39,8 @@ include('conexion.php');
 		Contraseña:<input type="text" name="contraseña">
 		<input type="submit" name="enviar">
 		</form>
-  	</div>  
+  	</div>
+  	<a href="alta.php">Dar de alta como usuario nuevo</a>
 </body>
 </html>
 <?php 
