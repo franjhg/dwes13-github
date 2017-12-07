@@ -13,13 +13,14 @@ $ruta1="img/";
     <meta charset="UTF-8"/>
     </head>
     <body>
-    <h2>Pruebas con la base de datos de Catalogo13</h2>
-    <a href="mostrarCatalogoFinal.php">Eliminar Filtros</a>
+    <h2>Base de datos Catalogo13</h2>
+   
+    <a href='http://localhost/U3P04-PHP-Autenticacion/login/indice.php'>Salir</a>
    		<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8"); ?> " method="post">
 		Autor a buscar: <input type="text" name="buscaObras">
 		<input type="submit" name="enviar">
 		</form>
-    
+     <a href="mostrarCatalogoFinal.php">Eliminar Filtros</a>
     <table style='border:0'>
     <tr style='background-color:lightblue'>
     <th>IdDisco</th>
@@ -116,7 +117,7 @@ while ($obra = $resultado->fetch_assoc()) {
 <?php 
 
 
-echo "<a href='http://localhost/U3P04-PHP-Autenticacion/login/indice.php'>Salir</a>";
+
 mysqli_close($conexion);
 ?>
 </body>

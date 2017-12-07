@@ -33,7 +33,7 @@ if(isset($_POST["enviar"])){
            $conexion->query("INSERT INTO usuario (login, password, nombre, admin)
                             values ('$nombre', '$contraEncript', '$nombreCompleto',0)");
          
-   
+        //------------------
         header('location:login.php');
     }
         
@@ -45,10 +45,11 @@ if(isset($_POST["enviar"])){
 
 <html>
 <head>
-	<title>Login</title>
+	<title>Alta</title>
 	<meta charset="UTF-8"/>
 </head>
 <body>
+	<h3>Solicitud de alta</h3>
 	<div>
   		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 		Nombre:<input type="text" name="nombre">
@@ -57,7 +58,7 @@ if(isset($_POST["enviar"])){
 		<input type="submit" name="enviar">
 		</form>
   	</div>
-  	
+  	<a href='login.php'>Cancelar</a>
 </body>
 </html>
 <?php 

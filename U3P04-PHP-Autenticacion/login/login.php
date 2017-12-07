@@ -46,6 +46,7 @@ if(isset($_SESSION["log"]) && $_SESSION["log"]==1){
 	<meta charset="UTF-8"/>
 </head>
 <body>
+	<h3>Identificate para acceder</h3>
 	<div>
   		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 		Nombre:<input type="text" name="nombre">

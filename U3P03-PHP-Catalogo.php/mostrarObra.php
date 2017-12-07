@@ -9,7 +9,7 @@ $ruta="img/";
 	<meta charset="UTF-8"/>
 </head>
 <body>
-
+	<h2>Info del Disco seleccionado</h2>
 <?php       //RECOGEMOS EL IDENTIFICADOR DE LA OBRA
     if (isset($_REQUEST['IdDisco'])){
         $paramDisco=$_REQUEST['IdDisco'];
@@ -61,7 +61,7 @@ echo "</tr>";
 <a href="mostrarCatalogoFinal.php">Volver al Catalogo</a>
 <?php 
 mysqli_free_result($resultado); //Liberamos la variable $resultado 
-echo "<h3>Desconectando...</h3>";
+
 mysqli_close($conexion);
 ?>
 </body>

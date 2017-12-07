@@ -7,16 +7,23 @@ session_start ();
 if(isset($_POST["enviar"])){
     $_SESSION["nombre"]=$_POST["nombre"];
     $_SESSION["contraseña"]=$_POST["contraseña"];
-    //$_SESSION["nomCompleto"]=$_POST["nomCompleto"];
-    
+       
     $nombre=$_SESSION["nombre"];
     $contraseña=$_SESSION["contraseña"];
    // $nombreCompleto=$_SESSION["nomCompleto"];
     
     $resultado = $conexion -> query("SELECT * from usuario WHERE login='$nombre'");
-    if($resultado->num_rows === 0){
+    if($resultado->num_rows === 0 ){
         echo  "<p>No esta</p>";
     }else{
+        //-------------PERMISO PARA BAJA-->SOLO ADMIN
+        $usu = $resultado->fetch_assoc();
+        if($usu["admin"]==0){
+            echo  "<p>Este usuario no es administrador</p><br>";
+            echo "<a href='indice.php'>Volver</a>";
+        }else{
+        
+        //----------------
         $servidor = "localhost";
         $usuario = "alumno_rw";
         $clave = "dwes";
@@ -33,7 +40,7 @@ if(isset($_POST["enviar"])){
         
         header('location:logout.php');
     }
-    
+    }
     
 }else{
     
@@ -42,10 +49,11 @@ if(isset($_POST["enviar"])){
 
 <html>
 <head>
-	<title>Login</title>
+	<title>Baja</title>
 	<meta charset="UTF-8"/>
 </head>
 <body>
+	<h3>Va a proceder a da de baja a:</h3>
 	<div>
   		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 		Nombre:<input type="text" name="nombre">
