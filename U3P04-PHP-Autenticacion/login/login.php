@@ -4,8 +4,7 @@ include('conexion.php');
 session_name('idSesion13');
 session_start ();
 if(isset($_SESSION["log"]) && $_SESSION["log"]==1){
-//if(isset($_SESSION["nombre"])){
-//if(isset($_SESSION["log"])){
+
     header("location:indice.php");
 }
 //if( $_SESSION["log"]==0){
@@ -17,8 +16,8 @@ if(isset($_SESSION["log"]) && $_SESSION["log"]==1){
 
         $resultado = $conexion -> query("SELECT * from usuario WHERE login='$nombre'");
         if($resultado->num_rows === 0){ 
-            echo "<p>No existe el usuario o la contraseña en la base de datos</p>";
-            echo "<a href='login.php'>Volver a intentar</a>";
+            echo "<p>No existe $nombre en la base de datos</p>";
+            echo "<a href='login.php'>Volver a intentar o dar de alta nuevo usuario</a>";
            $_SESSION["log"]=0;
            //$_SESSION=array();
           
@@ -30,6 +29,7 @@ if(isset($_SESSION["log"]) && $_SESSION["log"]==1){
                 $_SESSION["log"]=1;
                 $_SESSION["nombre"]=$nombre;
                 $_SESSION["contraseña"]=$contraseña;
+                $_SESSION["nombreCompleto"]=$usu[nombre];
                 header("Location: indice.php");
             }//BORRAR LA VARIABLE $_SESSION
         }  
