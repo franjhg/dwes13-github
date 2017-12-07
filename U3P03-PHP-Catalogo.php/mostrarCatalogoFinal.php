@@ -14,7 +14,7 @@ $ruta1="img/";
     </head>
     <body>
     <h2>Pruebas con la base de datos de Catalogo13</h2>
-    
+    <a href="mostrarCatalogoFinal.php">Eliminar Filtros</a>
    		<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8"); ?> " method="post">
 		Autor a buscar: <input type="text" name="buscaObras">
 		<input type="submit" name="enviar">
@@ -112,11 +112,11 @@ while ($obra = $resultado->fetch_assoc()) {
 //mysqli_free_result($resultado); //Liberamos la variable $resultado
 ?>
 </table>
-<a href="mostrarCatalogoFinal.php">Eliminar Filtros</a>
+
 <?php 
 
 
-echo "<h3>Desconectando...</h3>";
+echo "<a href='http://localhost/U3P04-PHP-Autenticacion/login/indice.php'>Salir</a>";
 mysqli_close($conexion);
 ?>
 </body>
