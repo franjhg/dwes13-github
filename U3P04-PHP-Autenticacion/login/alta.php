@@ -25,10 +25,13 @@ if(isset($_POST["enviar"])){
                echo "<p>Error al establecer la conexión (" . $conexion->connect_errno . ") " . $conexion->connect_error . "</p>";
            } 
            
-          
-           $conexion->query("INSERT INTO usuario (login, password, nombre, admin) 
-                            values ('$nombre', '$contraseña', '$nombreCompleto',0)");
-           
+          //SIN ENCRIPTAR
+           /* $conexion->query("INSERT INTO usuario (login, password, nombre, admin) 
+                            values ('$nombre', '$contraseña', '$nombreCompleto',0)"); */
+           //ENCRIPTANDO
+           $contraEncript=password_hash($contraseña, PASSWORD_DEFAULT);
+           $conexion->query("INSERT INTO usuario (login, password, nombre, admin)
+                            values ('$nombre', '$contraEncript', '$nombreCompleto',0)");
          
    
         header('location:login.php');

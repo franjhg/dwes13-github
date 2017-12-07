@@ -25,7 +25,9 @@ if(isset($_SESSION["log"]) && $_SESSION["log"]==1){
         }
         while ($usu = $resultado->fetch_assoc()) {
             
-            if($usu["login"]==$nombre && $usu["password"]==$contraseña){
+            /*if($usu["login"]==$nombre && $usu["password"]==$contraseña){*/
+            $contraseñaEncriptada=$usu["password"];
+            if($usu["login"]==$nombre && (password_verify($contraseña,$contraseñaEncriptada))){
                 $_SESSION["log"]=1;
                 $_SESSION["nombre"]=$nombre;
                 $_SESSION["contraseña"]=$contraseña;
