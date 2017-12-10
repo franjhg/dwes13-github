@@ -15,12 +15,12 @@ if(isset($_POST["enviar"])){
     $resultado = $conexion -> query("SELECT * from usuario WHERE login='$nombre'");
     if($resultado->num_rows === 0 ){
         echo  "<p>No esta</p>";
-    }else{
+   /* }else{
         //-------------PERMISO PARA BAJA-->SOLO ADMIN
         $usu = $resultado->fetch_assoc();
         if($usu["admin"]==0){
             echo  "<p>Este usuario no es administrador</p><br>";
-            echo "<a href='indice.php'>Volver</a>";
+            echo "<a href='indice.php'>Volver</a>";*/
         }else{
         
         //----------------
@@ -39,7 +39,7 @@ if(isset($_POST["enviar"])){
         
         
         header('location:logout.php');
-    }
+    
     }
     
 }else{
