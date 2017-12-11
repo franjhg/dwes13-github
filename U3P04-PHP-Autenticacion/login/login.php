@@ -13,10 +13,11 @@ if(isset($_SESSION["log"]) && $_SESSION["log"]==1){
     // $_SESSION["contraseña"]=$_POST["contraseña"];
      $nombre=$_POST["nombre"];
      $contraseña=$_POST["contraseña"];
-
-        $resultado = $conexion -> query("SELECT * from usuario WHERE login='$nombre'");
+    // $contraEncript=password_hash($contraseña, PASSWORD_DEFAULT);
+     //$resultado = $conexion -> query("SELECT * from usuario WHERE login='$nombre' AND password='$contraEncript'");
+     $resultado = $conexion -> query("SELECT * from usuario WHERE login='$nombre'");
         if($resultado->num_rows === 0){ 
-            echo "<p>No existe $nombre en la base de datos</p>";
+            echo "<p>No existe $nombre en la base de datos o no coincide la contraseña</p>";
             echo "<a href='login.php'>Volver a intentar o dar de alta nuevo usuario</a>";
            $_SESSION["log"]=0;
            //$_SESSION=array();
@@ -44,6 +45,7 @@ if(isset($_SESSION["log"]) && $_SESSION["log"]==1){
 <head>
 	<title>Login</title>
 	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
 </head>
 <body>
 	<h3>Identificate para acceder</h3>
