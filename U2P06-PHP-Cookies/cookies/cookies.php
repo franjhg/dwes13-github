@@ -1,9 +1,10 @@
 <?php
 
     if(isset($_POST["enviar"])) {
+        //--------"nombre_cookie"-"valor"-----------------"1dia*15"----"disponible para las aplicaciones de:"
     	setcookie("visitante", $_POST["nombre"], time() + (86400 * 15), "/U2P06-PHP-Cookies/cookies/"); // 86400 = segundos en 1 día
-    	header("Location: ".$_SERVER['PHP_SELF']);
-    }
+    	header("Location: ".$_SERVER['PHP_SELF']);//Recarga la pagina
+    }                                       //   "/" Disponible para todas las aplicaciones
     if(isset($_REQUEST["eliminarCookie"])){
         setcookie("visitante",null, time() -1, "/");
     }
