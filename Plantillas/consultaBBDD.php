@@ -18,4 +18,17 @@ while ($obra = $resultado->fetch_object()) {
     echo "<td>$obra[Nombre]</td>\n";//---------->while ($obra = $resultado->fetch_assoc())
     
 }
+        //----------------------------------------------------
+$resultado = $conexion -> query("SELECT * from usuario WHERE login='$nombre'");
+
+$conexion->query("INSERT INTO usuario (login, password, nombre, admin)
+                            values ('$nombre', '$contraEncript', '$nombreCompleto',0)");
+
+$conexion->query("DELETE FROM usuario WHERE login='$nombre'");
+
+
+
+
+
+
 ?>
