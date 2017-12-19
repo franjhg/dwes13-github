@@ -21,14 +21,14 @@ while(!feof($archivo)) {
     echo fgets($archivo) . "<br/>";
 }
 fclose($archivo); */
-//5.Lee ahora carácter a carácter, detectando fin de línea
+/* //5.Lee ahora carácter a carácter, detectando fin de línea
 $archivo = fopen($rutaArchivo, "r") or die("Imposible abrir el archivo");
 while(!feof($archivo)) {
     $c = fgetc($archivo);
     if (($c == "\n") or ($c == "\r\n")) echo "<br/>";
     else echo $c;
 }
-fclose($archivo);
+fclose($archivo); */
 
 
 
