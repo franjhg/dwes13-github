@@ -3,3 +3,5 @@ Desarrollo web en entorno servidor
 Diseño de interfaces
 Empresa e iniciativa emprendedora
 Inglés técnico
+Programación
+ Entornos de desarrollo

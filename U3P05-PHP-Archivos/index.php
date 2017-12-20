@@ -29,8 +29,60 @@ while(!feof($archivo)) {
     else echo $c;
 }
 fclose($archivo); */
+ 
+//6.Abre el archivo para escritura, y escribe el nombre 
+//de dos módulos de primero:
+function mostrarArchivo( $rutaArchivo){
+    $archivo = fopen($rutaArchivo, "r") or die("Imposible abrir el archivo");
+    while(!feof($archivo)) {
+        echo fgets($archivo) . "<br/>";
+    }
+}    
+    
+/* $archivo = fopen($rutaArchivo, "w") or die("Imposible  abrir el archivo para escritura");
+fwrite($archivo,"Programación\n");
+fwrite($archivo,"Entornos de desarrollo\n");
+fclose($archivo); 
 
+mostrarArchivo( $rutaArchivo);*/
 
+//7.Recupera el contenido original del archivo modulos.txt, y repite la ejecución
+//del código anterior 
+//sustituyendo "w" por "a" (append). Comprueba que ahora sale bien
+/* $archivo = fopen($rutaArchivo, "r+") or die("Imposible  abrir el archivo para escritura");
+fwrite($archivo,"Programación\n");
+fwrite($archivo,"Entornos de desarrollo\n");
+fclose($archivo);
 
+mostrarArchivo( $rutaArchivo); */
+
+//8.y repite la ejecución del código anterior 
+//sustituyendo "w" por "a" (append). 
+
+/* $archivo = fopen($rutaArchivo, "a") or die("Imposible  abrir el archivo para escritura");
+fwrite($archivo,"Programación");
+fwrite($archivo,"\n Entornos de desarrollo");
+fclose($archivo);
+
+mostrarArchivo( $rutaArchivo); */
+
+//9.Codifica un ejemplo en el que se escriban datos en un archivo nuevo.txt que previamente
+//no existía.
+$ruta="files/nuevos.txt";
+$res= file($ruta);
+
+unlink($ruta);
+$archivo = fopen($ruta, "a") or die("Imposible  abrir el archivo para escritura");
+fwrite($archivo,"Nueva mLínea 1\n");
+fwrite($archivo,"Nueva Línea 2\n");
+foreach ($res as $aux){
+    fwrite($archivo, $aux);
+}
+fclose($archivo);
+
+$res= file($ruta);
+natcasesort($res);
+
+mostrarArchivo( $ruta);
 ?>
 </body></html>
