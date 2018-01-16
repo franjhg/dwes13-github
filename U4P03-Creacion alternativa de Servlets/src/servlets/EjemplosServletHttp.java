@@ -1,4 +1,4 @@
-
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PrimerServlet
  */
-@WebServlet("/Bienvenida")
-public class PrimerServlet extends HttpServlet {
+@WebServlet("/ServletHttp")
+public class EjemplosServletHttp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PrimerServlet() {
+    public EjemplosServletHttp() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +31,8 @@ public class PrimerServlet extends HttpServlet {
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><meta charset='UTF-8'/><title>Primer Servlet</title></head>");
-		out.println("<body><h1>Primer servlet</h1>");
-		out.println("<h3>Me llamo FRAN</h3>");
+		out.println("<body><h1>3.3. Extensión de la clase HttpServlet</h1>");
+		out.println("<h3>3.3. Extensión de la clase HttpServlet</h3>");
 		out.println("<p>Ejecución de " + request.getContextPath() + "</p>");
 		out.println("<a href='./index.html'>Volver</a>");
 		out.println("</body></html>");
