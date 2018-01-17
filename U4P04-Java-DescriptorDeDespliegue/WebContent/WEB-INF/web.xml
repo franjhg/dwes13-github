@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>U4P04-Java-DescriptorDeDespliegue</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>servletDeEjemploWeb</servlet-name>
+    <servlet-class>servlets.EjemplosServletHttp</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servletDeEjemploWeb</servlet-name>
+    <url-pattern>/EjemploServletHttp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>servletGenerico</servlet-name>
+    <servlet-class>servlets.EjemploServletGenerico</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servletGenerico</servlet-name>
+    <url-pattern>/EjemploServletGenerico</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>EjemploServlet</servlet-name>
+    <servlet-class>servlets.EjemploServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EjemploServlet</servlet-name>
+    <url-pattern>/EjemploServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>numeroAleatorio</servlet-name>
+    <servlet-class>servlets.numeroAleatorio</servlet-class>    
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>numeroAleatorio</servlet-name>
+    <url-pattern>/InventaNumero</url-pattern>
+    <url-pattern>/RandomNumber</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>servletHora</servlet-name>
+    <servlet-class>servlets.servletHora</servlet-class>    
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servletHora</servlet-name>
+    <url-pattern>/EscribeFecha</url-pattern>
+    <url-pattern>/ShowDate</url-pattern>
+  </servlet-mapping>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/errores/error404.html</location>
+  </error-page>
+</web-app>
