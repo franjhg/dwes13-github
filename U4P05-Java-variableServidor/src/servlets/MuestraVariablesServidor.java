@@ -5,20 +5,28 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet("/MuestraVariablesServidor")
+@WebServlet(urlPatterns="/MuestraVariablesServidor",
+name="servlet",
+loadOnStartup=1,
+initParams= {
+		@WebInitParam(name="servlet3", value="s3"),
+		@WebInitParam(name="servlet4", value="s4")
+})
 public class MuestraVariablesServidor extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.addHeader("alumno", "Fran");
+       // response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><meta charset='UTF-8'/><title>Variables servidor</title></head>"
 				+ "<style>table,td {border:solid 1px black;}</style></head>");
