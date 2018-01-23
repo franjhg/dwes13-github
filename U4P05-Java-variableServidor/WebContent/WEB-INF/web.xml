@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>U4P05-Java-variableServidor</display-name>
+   <context-param>
+  	<param-name>srv_bd</param-name>
+  	<param-value>localhost:3306</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>usr_bd_r</param-name>
+  	<param-value>alumno</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>psw_bd_r</param-name>
+  	<param-value>alumno</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>usr_bd__rw</param-name>
+  	<param-value>alumno_rw</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>psw_bd_rw</param-name>
+  	<param-value>dwes</param-value>
+  </context-param>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -12,12 +32,22 @@
   
   <servlet>
     <servlet-name>servletVariables</servlet-name>
-    <servlet-class>servlets.MuestraVariablesServidor</servlet-class>    
+    <servlet-class>servlets.MuestraVariablesServidor</servlet-class>
+    <init-param>
+    	<param-name>Servlet3</param-name>
+    	<param-value>S_3</param-value>
+    </init-param>   
+    <init-param>
+    	<param-name>Servlet4</param-name>
+    	<param-value>S_4</param-value>
+    </init-param>
+   
   </servlet>
-  <servlet-mapping>
+  <!-- <servlet-mapping>
     <servlet-name>servletVariables</servlet-name>
     <url-pattern>/MuestraVariablesServidor</url-pattern>
     
-  </servlet-mapping>
+  </servlet-mapping> -->
   
 </web-app>
+ 

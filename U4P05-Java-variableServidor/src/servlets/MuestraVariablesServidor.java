@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns="/MuestraVariablesServidor",
-name="servlet",
+name="servletVariables",
 loadOnStartup=1,
 initParams= {
-		@WebInitParam(name="servlet3", value="s3"),
-		@WebInitParam(name="servlet4", value="s4")
+		@WebInitParam(name="servlet1", value="s1"),
+		@WebInitParam(name="servlet2", value="s2")
 })
 public class MuestraVariablesServidor extends HttpServlet {
 
@@ -58,6 +59,30 @@ public class MuestraVariablesServidor extends HttpServlet {
 		out.println("<tr><td>Directorio de DESPLIEGUE</td><td>" + contexto.getRealPath("/") + "</td></tr>");
 		out.println("<tr><td>Nombre de la aplicación</td><td>" + contexto.getServletContextName() + "</td></tr>");
 		out.println("</table>");
+		
+		out.println("<p>Parametros de inicializacion del servlet"+request.getServletPath()+"</p>");
+		
+		out.println("<table style='border-collapse: collapse;margin:10px'>");
+		out.println("<tr><td><b>Parametros Inicializacion</b></td><td><b>Valor</b></td></tr>");
+		Enumeration <String> parametrosServlet = this.getInitParameterNames();
+		while (parametrosServlet.hasMoreElements()) {
+			String actual=parametrosServlet.nextElement();
+		out.print("<tr><td>"+actual+"</td><td>" + this.getInitParameter(actual) + "</td></tr>");
+		}
+		out.println("</table>");
+		
+		out.println("<p>Parametros de inicializacion del contexto"+contexto.getServletContextName()+"</p>");
+		
+		out.println("<table style='border-collapse: collapse;margin:10px'>");
+		out.println("<tr><td><b>Parametros Inicializacion del contexto</b></td><td><b>Valor</b></td></tr>");
+		Enumeration <String> parametros = contexto.getInitParameterNames();
+		while(parametros.hasMoreElements()) {
+			String actual=parametros.nextElement();
+			out.print("<tr><td>"+actual+"</td><td>" + contexto.getInitParameter(actual) + "</td></tr>");
+			
+		}
+		out.println("</table>");
+		
 		out.close();
 	}
 }
