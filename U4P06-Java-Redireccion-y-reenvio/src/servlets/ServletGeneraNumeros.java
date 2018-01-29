@@ -33,8 +33,8 @@ public class ServletGeneraNumeros extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		int res=(int) (Math.random()*100+1);
-		request.setAttribute("numero", res);
+		int num=(int) (Math.random()*100+1);
+		request.setAttribute("numero", num);
 		
 		//ServletContext contexto = getServletContext();//SendRedirect
 		
@@ -45,7 +45,7 @@ public class ServletGeneraNumeros extends HttpServlet {
 		out.println("</body></html>");
 		out.close();*/
 		
-		RequestDispatcher rd=request.getRequestDispatcher("MostrarNumero");
+		RequestDispatcher rd=request.getRequestDispatcher("/GenerarColores");
 		rd.forward(request, response);
 		
 		//response.sendRedirect(contexto.getContextPath()+"/MostrarNumero");

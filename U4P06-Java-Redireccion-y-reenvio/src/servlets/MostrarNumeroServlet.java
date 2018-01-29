@@ -32,10 +32,9 @@ public class MostrarNumeroServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		ServletContext contexto = getServletContext();
-		
-		/*
-		 * int number, number1, number2, number3;
-		ServletContext contexto = getServletContext();
+				
+		int number, number1, number2, number3;
+	
 
 		if (request.getAttribute("numero") != null) {
 
@@ -54,8 +53,8 @@ public class MostrarNumeroServlet extends HttpServlet {
 				response.sendRedirect(contexto.getContextPath() + "/GenerarColores");
 			}
 		} else {
-			response.sendRedirect(contexto.ge
-		 */
+			response.sendRedirect(contexto.getContextPath() + "/Sorpresa");
+		 
 		
 		
 		
@@ -73,6 +72,7 @@ public class MostrarNumeroServlet extends HttpServlet {
 		out.println("<a href='http://localhost:8080/U4P06-Java-Redireccion-y-reenvio/index.html'>Indice</a>");
 		out.println("</body></html>");
 		out.close();
+		}
 	}
 
 	/**
