@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,7 +30,12 @@ public class ProcesarDatosServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-										
+		
+		PrintWriter out = response.getWriter();
+		
+		out.println("<ul");//PAGINA 4
+		
+		
 		//text							--campo name--
 		String nombre=request.getParameter("nombre");
 		String apellidos=request.getParameter("apellidos");
@@ -42,8 +48,11 @@ public class ProcesarDatosServlet extends HttpServlet {
 			SimpleDateFormat formatoFechaSalida=new SimpleDateFormat("dd/MM/yyyy");
 		}*/
 		
+		out.println(nombre);
+		out.println(apellidos);
+		out.println(fnacimiento);
 		
-		
+		out.close();
 	}
 
 	/**

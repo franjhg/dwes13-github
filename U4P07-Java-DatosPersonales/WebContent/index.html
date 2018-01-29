@@ -10,9 +10,14 @@
 		Nombre:<input type="text" name="nombre"/></br>
 		Apellidos:<input type="text" name="apellidos"/></br>
 		Fecha de nacimiento:<input type="date" name="fnacimiento"/></br></br></br>
-		Sexo:</br>	<input type="radio" value="Hombre" name="hombre"/>Hombre</br>
-					<input type="radio" value="Mujer" name="mujer"/>Mujer</br>
-					<input type="radio" value="Otro" name="otro"/>Otro</br></br></br>
+		Sexo:</br>	<input type="radio" value="Hombre" name="sexo"/>Hombre</br>
+					<input type="radio" value="Mujer" name="sexo"/>Mujer</br>
+					<input type="radio" value="Otro" name="sexo"/>Otro</br></br></br>
+		Estado Civil <select name="estado">
+  					<option value="casado">Casado</option> 
+  					<option value="soltero" selected>Soltero</option>
+ 					<option value="otro">Otro</option>
+					</select></br></br>
 		Aficiones:</br>	
 					<input type="checkbox" value="Viajar" name="viajar" /> Viajar </br>
 					<input type="checkbox"  value="Leer" name="leer" /> Leer </br>
@@ -20,7 +25,8 @@
 					<input type="checkbox" value="Cine" name="cine" /> Ir al cine </br>
 					<input type="checkbox" value="Deporte" name="deporte" /> Hacer deporte </br>
 					<input type="checkbox" value="Teatro" name="teatro" /> Ir al teatro </br></br></br></br> 
-					
+		Comentarios:</br> <textarea name="textarea" rows="10" cols="50">Escriba aquí sus cometarios</textarea>
+					</br></br>
 		<input type="submit" name="enviar">
 		</form>
   	</div>
