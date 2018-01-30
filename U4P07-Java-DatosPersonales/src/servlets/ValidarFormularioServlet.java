@@ -32,7 +32,7 @@ public class ValidarFormularioServlet extends HttpServlet {
 	//text							--campo name--
 		String nombre=request.getParameter("nombre");
 		String apellidos=request.getParameter("apellidos");	
-	
+		String contraseña=request.getParameter("contraseña");
 		
 		
 		
@@ -49,7 +49,7 @@ public class ValidarFormularioServlet extends HttpServlet {
 		out.println("<body>"
 				+ "<h1>Servlets y Formularios</h1>");
 	
-	
+	out.println("<p>"+validaContraseña(contraseña)+"</p>");
 		
 		
 		
@@ -64,5 +64,10 @@ public class ValidarFormularioServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	public boolean validaContraseña(String contra) {
+		boolean valido=true;
+		
+		
+		return valido;
+	}
 }
