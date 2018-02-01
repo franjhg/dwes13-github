@@ -6,5 +6,13 @@ public class Figuras {
 	{
 	    GREEN, BLUE, RED, YELLOW, BROWN
 	}
+
+	@Override
+	public String toString() {
+		return "Figuras []";
+	}
+	
+	
+	
 	
 }
