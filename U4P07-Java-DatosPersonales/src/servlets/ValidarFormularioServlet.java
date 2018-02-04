@@ -49,7 +49,14 @@ public class ValidarFormularioServlet extends HttpServlet {
 		String apellidos=request.getParameter("apellidos");	
 		String password=request.getParameter("password");
 		String telefono=request.getParameter("telefono");
-			String patron="^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).{3,}$";
+		String comentario=request.getParameter("comentarios");
+		String[] valoresSexo=request.getParameterValues("sexo");//CHECKBOX Y DEMÁS
+		String[] valorEstado=request.getParameterValues("estado");
+		String[] aficiones=request.getParameterValues("Aficiones");
+		
+		
+			//String patron="^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).{3,}$";
+			String patron="[a-zA-Z0-9]{5,10}";
 			String patronTelefono="[0-9]*";
 			
 			SimpleDateFormat formatoFecha=new SimpleDateFormat("yyyy-MM-dd");
@@ -95,6 +102,26 @@ public class ValidarFormularioServlet extends HttpServlet {
 			out.println("<p>telefono incorrecto</p>");
 		}
 		
+		//SEXO
+		out.println("<ul>");
+			for(int i=0;i<valoresSexo.length;i++) {
+				out.println("<li>"+valoresSexo[i]+"</li>");
+			}
+			out.println("<ul>");
+		//ESTADO
+			out.println("<ul>");
+			for(int i=0;i<valorEstado.length;i++) {
+				out.println("<li>"+valorEstado[i]+"</li>");
+			}
+			out.println("<ul>");
+		//AFICIONES
+			out.println("<ul>");
+			for(int i=0;i<aficiones.length;i++) {
+				out.println("<li>"+aficiones[i]+"</li>");
+			}
+			out.println("<ul>");
+		
+		out.println(comentario);
 		
 		out.println("</body></html>");
 		out.close();

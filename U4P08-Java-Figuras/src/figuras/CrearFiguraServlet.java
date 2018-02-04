@@ -67,7 +67,7 @@ public class CrearFiguraServlet extends HttpServlet {
 			rd.forward(request, response);*/
 		 //----------------------
 		
-		 
+		 //5
 		 if((ladoX!="")&&(ladoY=="")&&(radioX=="")&&(radioY=="")){
 			 cuadrado=true;	
 			 out.println("cuadrado");
