@@ -59,7 +59,7 @@ public class ValidarFormularioServlet extends HttpServlet {
 			
 				long milisegFecha=fecha.getTime();
 				long milisegFechaActual=fechaActual.getTime();
-				if(milisegFecha<milisegFechaActual) {
+				if(milisegFecha>milisegFechaActual) {
 					out.println("Fecha no válida");
 				}else {
 					out.println(fecha);
@@ -75,6 +75,7 @@ public class ValidarFormularioServlet extends HttpServlet {
 		
 	
 		out.println("<p>"+nombre+"</p>");
+		out.println("<p>"+apellidos+"</p>");
 		
 		if(password==null) {
 			out.println("<p>no hay</p>");
@@ -82,12 +83,14 @@ public class ValidarFormularioServlet extends HttpServlet {
 		
 		if(password.matches(patron)) {
 			out.println("<p>Contraseña correcta</p>");
+			//out.println(password);
 		}else {
 			out.println("<p>Contraseña incorrecta</p>");
 		}
 		
 		if(telefono.matches(patronTelefono)) {
-			out.println("<p>telefono correcto</p>");
+			out.println("<p>telefono correcto --- "+telefono+"</p>");
+			
 		}else {
 			out.println("<p>telefono incorrecto</p>");
 		}
@@ -104,10 +107,5 @@ public class ValidarFormularioServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	/*public boolean validaContraseña(String contra) {
-		boolean valido=true;
-		
-		
-		return valido;
-	}*/
+	
 }
