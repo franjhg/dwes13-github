@@ -44,3 +44,11 @@ public class MostrarFiguraServlet extends HttpServlet {
 	}
 
 }
+/*			request.setAttribute("cuadrado", cuad);
+			 request.setAttribute("color", color);
+			 request.setAttribute("borde", borde);
+			 
+			  request.setAttribute("rectangulo", rect);
+			  request.setAttribute("circunferencia", circ);
+			  request.setAttribute("elipse", elip);
+*/
