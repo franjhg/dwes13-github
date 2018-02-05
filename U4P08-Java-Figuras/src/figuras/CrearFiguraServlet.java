@@ -80,29 +80,32 @@ public class CrearFiguraServlet extends HttpServlet {
 			 double lx = Double.parseDouble(ladoX);
 			 Cuadrado cuad=new Cuadrado(lx);
 			 
-			 request.setAttribute("cuadrado", cuad);
+			 request.setAttribute("figura", cuad);
 			 request.setAttribute("color", color);
 			 request.setAttribute("borde", borde);
 			 RequestDispatcher rd=request.getRequestDispatcher("/MostrarFigura");
 				rd.forward(request, response);
-			 out.println(color);
-			 out.println(borde);
+				
+			
+				
+			/* out.println(color);
+			 out.println(borde);*/
 		
 		 }
 		 if((ladoX!="")&&(ladoY!="")&&(radioX=="")&&(radioY=="")){
 			 rectangulo=true;
 			 out.println("rectangulo");
 			 ServletContext contexto = getServletContext();//SendRedirect
-			 if(!esNumero(ladoX)) {
+			 if((!esNumero(ladoX))||(!esNumero(ladoY))) {
 				 
 				 response.sendRedirect(contexto.getContextPath()+"/figuras.html");
 			 }
 			 
 			 double lx = Double.parseDouble(ladoX);
 			 double ly = Double.parseDouble(ladoY);
-			 Rectangulo rect= new Rectangulo(ly, ly);
+			 Rectangulo rect= new Rectangulo(lx, ly);
 			 
-			 request.setAttribute("rectangulo", rect);
+			 request.setAttribute("figura", rect);
 			 request.setAttribute("color", color);
 			 request.setAttribute("borde", borde);
 			 RequestDispatcher rd=request.getRequestDispatcher("/MostrarFigura");
@@ -114,7 +117,7 @@ public class CrearFiguraServlet extends HttpServlet {
 			 out.println("circunferencia");
 			
 			 ServletContext contexto = getServletContext();//SendRedirect
-			 if(!esNumero(ladoX)) {
+			 if(!esNumero(radioX)) {
 				 
 				 response.sendRedirect(contexto.getContextPath()+"/figuras.html");
 			 }
@@ -122,27 +125,27 @@ public class CrearFiguraServlet extends HttpServlet {
 			 double rx = Double.parseDouble(radioX);
 			 Circunferencia circ=new Circunferencia(rx);
 			 
-			 request.setAttribute("circunferencia", circ);
+			 request.setAttribute("figura", circ);
 			 request.setAttribute("color", color);
 			 request.setAttribute("borde", borde);
 			 RequestDispatcher rd=request.getRequestDispatcher("/MostrarFigura");
 				rd.forward(request, response);
 		 }
-		 if((ladoX!="")&&(ladoY=="")&&(radioX!="")&&(radioY!="")){
+		 if((ladoX=="")&&(ladoY=="")&&(radioX!="")&&(radioY!="")){
 			 elipse=true;	
 			 out.println("elipse");
 			
 			 ServletContext contexto = getServletContext();//SendRedirect
-			 if(!esNumero(ladoX)) {
+			 if((!esNumero(radioX))||(!esNumero(radioY))) {
 				 
 				 response.sendRedirect(contexto.getContextPath()+"/figuras.html");
 			 }
 			 
 			 double rx = Double.parseDouble(radioX);
 			 double ry = Double.parseDouble(radioY);
-			 Elipse elip=new Elipse(rx, rx);
+			 Elipse elip=new Elipse(rx, ry);
 		 
-			 request.setAttribute("elipse", elip);
+			 request.setAttribute("figura", elip);
 			 request.setAttribute("color", color);
 			 request.setAttribute("borde", borde);
 			 RequestDispatcher rd=request.getRequestDispatcher("/MostrarFigura");

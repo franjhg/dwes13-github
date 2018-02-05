@@ -39,10 +39,32 @@ public class MostrarFiguraServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.setContentType("text/html;charset=UTF-8");
+		 PrintWriter out = response.getWriter();
+		 String vcolor="";
+		 String vborde="";
+		 
+		Figuras f=(Figuras) request.getAttribute("figura");
+		String color=(String) request.getAttribute("color");
+		String borde=(String) request.getAttribute("borde");
+		
+		
+		if(color==null) {
+			 vcolor="Sin color";
+		}else {
+			vcolor=color;
+		}
+		if(borde==null) {
+			 vborde="Sin borde";
+		}else { vborde="Con borde";}
+		
+		out.println(f.toString()+"</br>");
+		out.println(vcolor+"</br>");
+		out.println(vborde+"</br>");
+	
+		out.println("<a href='./figuras.html'>Volver</a>");
 	}
-
+	
 }
 /*			request.setAttribute("cuadrado", cuad);
 			 request.setAttribute("color", color);
