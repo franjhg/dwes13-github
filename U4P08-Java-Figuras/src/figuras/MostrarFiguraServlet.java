@@ -60,7 +60,24 @@ public class MostrarFiguraServlet extends HttpServlet {
 		
 		out.println(f.toString()+"</br>");
 		out.println(vcolor+"</br>");
-		out.println(vborde+"</br>");
+		out.println(vborde+"</br></br></br></br></br></br></br></br>");
+		
+		out.println("<svg ><circle  r='80' stroke='black' stroke-width='1' fill="+color+" /></svg>");
+		
+		/*<svg width="400" height="100">
+		  <rect width="400" height="100" style="fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />
+		</svg>
+		
+		<svg height="130" width="500">
+		   <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+		</svg>
+		
+		cx='80' cy='80'
+		*/
+		
+		
+		
+		
 	
 		out.println("<a href='./figuras.html'>Volver</a>");
 	}

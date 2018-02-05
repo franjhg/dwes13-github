@@ -57,7 +57,7 @@ public class ValidarFormularioServlet extends HttpServlet {
 		
 			//String patron="^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).{3,}$";
 			String patron="[a-zA-Z0-9]{5,10}";
-			String patronTelefono="[0-9]*";
+			String patronTelefono="[0-9]{9}";
 			
 			SimpleDateFormat formatoFecha=new SimpleDateFormat("yyyy-MM-dd");
 			try {
