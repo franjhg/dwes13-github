@@ -71,8 +71,14 @@ public class SaludoCookiesServlet extends HttpServlet {
 		Cookie cookieUsuario = buscarCookie("usuario", request);
 		if (cookieUsuario != null) {
 			out.println("<h2>Bienvenid@, " + cookieUsuario.getValue() + "</h2>");
+			out.println("<form action='"+request.getRequestURI()+"' method='post'>"
+					+ "<label>Introduce tu nombre si quieres cambiar de usuario:</label>" + "<input type='text' name='usuario'/>"
+					+ "<span class='error'>" + errorUsuario + "</span><br/>"
+					+ "<input type='submit' name='enviar' value='Enviar'/></form>");
+			
 		} else {
 
+			
 			out.println("<form action='"+request.getRequestURI()+"' method='post'>"
 					+ "<label>Introduce tu nombre para dirigirnos a ti:</label>" + "<input type='text' name='usuario'/>"
 					+ "<span class='error'>" + errorUsuario + "</span><br/>"
