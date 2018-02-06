@@ -34,16 +34,7 @@ public class ValidarFormularioServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html>"
-				+ "<head>"
-				+ "<meta charset='UTF-8'/>"
-				+ "<title>Servlets y Formularios</title>"
-				+"<style type='text/css'>"
-				+ "p{color:red;border:2px solid black;}"
-				+ "</style>"
-				+ "</head>");
-		out.println("<body>"
-				+ "<h1>Servlets y Formularios</h1>");
+		
 	//text							--campo name--
 		String nombre=request.getParameter("nombre");
 		String apellidos=request.getParameter("apellidos");	
@@ -79,49 +70,62 @@ public class ValidarFormularioServlet extends HttpServlet {
 			}
 		
 				
-		
+			out.println("<html>"
+					+ "<head>"
+					+ "<meta charset='UTF-8'/>"
+					+ "<title>Servlets y Formularios</title>"
+					+"<style type='text/css'>"
+					+ "table { border-collapse: collapse; margin: auto; }"
+					+ "tr,td { border: 2px solid black;width: 250px; height: 35px; }"
+					+ "</style>"
+					+ "</head>");
+			out.println("<body>"
+					+ "<h1>Servlets y Formularios</h1>"
+					+"<table><tr><td>DATOS PERSONALES</td></tr>");
+					
 	
-		out.println("<p>"+nombre+"</p>");
-		out.println("<p>"+apellidos+"</p>");
+		out.println("<tr><td>"+nombre+"</td></tr>");
+		out.println("<tr><td>"+apellidos+"</td></tr>");
 		
 		if(password==null) {
-			out.println("<p>no hay</p>");
+			out.println("<tr><td>no hay</td></tr>");
 		}
 		
 		if(password.matches(patron)) {
-			out.println("<p>Contraseña correcta</p>");
+			out.println("<tr><td>Contraseña correcta</td></tr>");
 			//out.println(password);
 		}else {
-			out.println("<p>Contraseña incorrecta</p>");
+			out.println("<tr><td>Contraseña incorrecta</td></tr>");
 		}
 		
 		if(telefono.matches(patronTelefono)) {
-			out.println("<p>telefono correcto --- "+telefono+"</p>");
+			out.println("<tr><td>telefono --- "+telefono+"</td></tr>");
 			
 		}else {
-			out.println("<p>telefono incorrecto</p>");
+			out.println("<tr><td>telefono incorrecto</td></tr>");
 		}
-		
+		out.println("</table>");
 		//SEXO
 		out.println("<ul>");
 			for(int i=0;i<valoresSexo.length;i++) {
-				out.println("<li>"+valoresSexo[i]+"</li>");
+				out.println("<li>Sexo: "+valoresSexo[i]+"</li>");
 			}
-			out.println("<ul>");
+			out.println("</ul>");
 		//ESTADO
-			out.println("<ul>");
+			out.println("</ul>");
 			for(int i=0;i<valorEstado.length;i++) {
-				out.println("<li>"+valorEstado[i]+"</li>");
+				out.println("<li>Estado: "+valorEstado[i]+"</li>");
 			}
-			out.println("<ul>");
+			out.println("</ul>");
 		//AFICIONES
-			out.println("<ul>");
+			out.println("<p>Aficiones</p>");
+			out.println("<ul>");			
 			for(int i=0;i<aficiones.length;i++) {
 				out.println("<li>"+aficiones[i]+"</li>");
 			}
-			out.println("<ul>");
+			out.println("</ul>");
 		
-		out.println(comentario);
+		out.println("<p>COMENTARIOS: "+comentario+"</p>");
 		
 		out.println("</body></html>");
 		out.close();
