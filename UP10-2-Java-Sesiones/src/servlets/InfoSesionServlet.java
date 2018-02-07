@@ -80,7 +80,9 @@ public class InfoSesionServlet extends HttpServlet {
 						+ "'>Refrescar</a></p></br>");
 
 		out.println("<p><a href='" + request.getRequestURI() + "?reiniciarSesion=true'>Borrar la sesión</a></p>");
-
+		
+		out.println("<p><a href='" + response.encodeURL(request.getRequestURI())+ "'>Refrescar con reescritura de URL</a></p>");     		
+		
 		out.println("</body></html>");
 		out.close();
 	}
