@@ -66,7 +66,9 @@ public class SaludoCookiesServlet extends HttpServlet {
 		}
 
 // se empieza a generar la salida HTML
-		out.println("<html><head><meta charset='UTF-8'/>" + "<style> .error {color: red}</style>" + "</head><body>");
+		out.println("<html><head><meta charset='UTF-8'/>"
+					+ "<style> .error {color: red}</style>"
+					+ "</head><body>");
 
 		Cookie cookieUsuario = buscarCookie("usuario", request);
 		if (cookieUsuario != null) {

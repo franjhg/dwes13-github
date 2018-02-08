@@ -68,9 +68,10 @@ public class InfoSesionServlet extends HttpServlet {
 
 		// Comienza la salida...
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/html;UTF-8");
 		out.println("<html><head><meta charset='UTF-8'/>" + "<style> .error {color: red}</style>"
 				+ "<title>Sesiones en JavaEE</title></head><body>");
-		response.setContentType("text/html;UTF-8");
+		
 		out.println(
 				"<h2>Información sobre la sesión</h2>" + "<ul>" + "<li> Identificador: " + session.getId() + "</li>\n"
 						+ "<li> Fecha de creación: " + fechaInicioSesion + "</li>\n" + "<li> Fecha de último acceso: "
