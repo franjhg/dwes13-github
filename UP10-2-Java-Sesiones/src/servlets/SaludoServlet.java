@@ -33,33 +33,58 @@ public class SaludoServlet extends HttpServlet {
 		response.setContentType("text/html;UTF-8");
 				
 		HttpSession session = request.getSession();//Recuperamos o iniciamos sesion
-		String mensaje="--";
-		String nombre="++";
+		String mensaje="";
+		String nombre="";
+		
+		if(request.getParameter("cerrarSesion")!=null) {
+			//cerrar sesion
+			session.invalidate();
+		}else {
+		
+		
 		
 		if(session.isNew()) {
+			session.setAttribute("vnombre","");//Creamos la variable se sesion
+
 		}else {
 			
 			
 		
-			if(request.getMethod().equals("post")) {
-				session.setAttribute("vnombre",request.getParameter("nombre"));//variable se sesion=parametro nombre que se ha enviado
-				nombre=session.getAttribute("vnombre").toString();
-				//response.sendRedirect(request.getRequestURI());
+			if(request.getMethod().equals("POST")) {
+				nombre=request.getParameter("nombre");
+				if(nombre==null||nombre=="") {
+					mensaje="Debe introducir un nombre";
+				}else {
+					session.setAttribute("vnombre",request.getParameter("nombre"));//variable se sesion=parametro nombre que se ha enviado
+					nombre=session.getAttribute("vnombre").toString();
 				mensaje="Bienvenido "+nombre;
-				
+				}
 			}
 		
 		}	
-		
+		}
 		out.println("<html><head><meta charset='UTF-8'/> "
-				+ "<style> .error {color: red}</style>"
-				+ "</head><body>"
-				+ "<p>"+ mensaje +"oo"+ nombre +"</p>"); 
+				//+ "<style> .error {color: red}</style>"
+				+ "</head><body>");
+				
+			if((nombre!=null) && (nombre!="")) {
+				out.println("<p>"+ mensaje + "</p>");
+				out.println("<p><a href='" + request.getRequestURI() + "?cerrarSesion=true'>Cerrar Sesion</a></p>");//ENLACE PARA CERRAR SESION
+				
+				out.println("</body></html>");
+			}else {
+		
+		out.println(mensaje);
 		out.println("<form action='"+request.getRequestURI()+"' method='post'"
 				+"<label>Introduce tu nombre:</label> <input type='text' name='nombre'/>"
 				
-				+"<input type='submit' name='enviar' value='Enviar'/></form>");			
-			
+				+"<input type='submit' name='enviar' value='Enviar'/></form>");	
+		
+		
+		
+			}
+		out.println("</body></html>");
+		
 	}
 
 	/**
