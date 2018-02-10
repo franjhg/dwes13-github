@@ -6,24 +6,21 @@ import java.io.PrintWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServlet;
-import jdk.nashorn.internal.runtime.Context;
 
 /**
- * Servlet Filter implementation class ContadorFilter
+ * Servlet Filter implementation class WrapFilter
  */
-@WebFilter(filterName="FiltroDeContador")
-public class ContadorFilter implements Filter {
+@WebFilter(filterName="FiltroWrap")
+public class WrapFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public ContadorFilter() {
+    public WrapFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -40,22 +37,12 @@ public class ContadorFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		PrintWriter out = response.getWriter();
-		int cont=1;
-		ServletContext context=request.getServletContext();
-		
-		if(context.getAttribute("contador")!=null) {
-			/*int*/ cont=Integer.parseInt(context.getAttribute("contador").toString());
-			cont++;
-			context.setAttribute("contador", cont);
-		}else {
-			/*int*/ cont=1;
-			context.setAttribute("contador",cont);
-		}
-		System.out.println("Contador");
+		response.setContentType("text/html;UTF-8");
+		PrintWriter out=response.getWriter();
+		out.println("<html><head><meta charset='UTF-8'/></head><body>");
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
-		out.println(cont);
+		out.println("</body></html>");
 	}
 
 	/**
