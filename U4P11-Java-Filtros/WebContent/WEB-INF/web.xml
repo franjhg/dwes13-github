@@ -9,21 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+   
+  <filter-mapping>
+    <filter-name>FiltroDeContador</filter-name>
+    <servlet-name>SaludoServlet</servlet-name>
+    <servlet-name>FechaServlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>FiltroWrap</filter-name>
+    <servlet-name>SaludoServlet</servlet-name>
+    <servlet-name>FechaServlet</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </filter-mapping>
   <filter-mapping>
     <filter-name>FiltroDeRegistro</filter-name>
     <servlet-name>SaludoServlet</servlet-name>
     <servlet-name>FechaServlet</servlet-name>
     <url-pattern>*.html</url-pattern>
   </filter-mapping>
-  <filter-mapping>
-    <filter-name>FiltroDeContador</filter-name>
-    <servlet-name>SaludoServlet</servlet-name>
-    <servlet-name>FechaServlet</servlet-name>
-  </filter-mapping>
-   <filter-mapping>
-    <filter-name>FiltroWrap</filter-name>
-    <servlet-name>SaludoServlet</servlet-name>
-    <servlet-name>FechaServlet</servlet-name>
-    <url-pattern>*.html</url-pattern>
-  </filter-mapping>
+  
 </web-app>

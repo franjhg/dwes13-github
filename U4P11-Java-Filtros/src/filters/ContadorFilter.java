@@ -44,6 +44,8 @@ public class ContadorFilter implements Filter {
 		int cont=1;
 		ServletContext context=request.getServletContext();
 		
+		System.out.println("Aplicando filtro contador");
+		
 		if(context.getAttribute("contador")!=null) {
 			/*int*/ cont=Integer.parseInt(context.getAttribute("contador").toString());
 			cont++;
@@ -52,10 +54,10 @@ public class ContadorFilter implements Filter {
 			/*int*/ cont=1;
 			context.setAttribute("contador",cont);
 		}
-		System.out.println("Contador");
+		//System.out.println("Contador");
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
-		out.println(cont);
+		out.println("Obtenido por ContadorFilter: "+cont+"<br>");
 	}
 
 	/**

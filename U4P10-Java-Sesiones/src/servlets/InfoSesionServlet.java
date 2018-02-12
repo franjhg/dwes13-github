@@ -34,7 +34,9 @@ public class InfoSesionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// Crear una sesión o recuperar la existente si se encuentra la cookie de sesión
 		HttpSession session = request.getSession();
-
+		PrintWriter out = response.getWriter();
+		
+		
 		int contador = 0;
 		String primeraVez = "";
 		// Comprobar si es la primera vez
@@ -67,7 +69,7 @@ public class InfoSesionServlet extends HttpServlet {
 		Date fechaUltimoAcceso = new Date(session.getLastAccessedTime());
 
 		// Comienza la salida...
-		PrintWriter out = response.getWriter();
+		
 		out.println("<html><head><meta charset='UTF-8'/>" + "<style> .error {color: red}</style>"
 				+ "<title>Sesiones en JavaEE</title></head><body>");
 		response.setContentType("text/html;UTF-8");

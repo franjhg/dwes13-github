@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -37,11 +38,25 @@ public class WrapFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+		ServletContext context=request.getServletContext();
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out=response.getWriter();
-		out.println("<html><head><meta charset='UTF-8'/></head><body>");
+		System.out.println("Aplicando filtro Wrap");
+		
+		out.println("<html><head><meta charset='UTF-8'/></head>");
+				if(context.getAttribute("contador")!=null) {
+					int contador=Integer.parseInt((context.getAttribute("contador").toString()));
+					out.println("<title>Nº Visitas:"+contador+"</title>");
+					}
+		out.println( "<body>");
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
+		/*if(context.getAttribute("contador")!=null) {
+			int contador=Integer.parseInt((context.getAttribute("contador").toString()));
+			out.println("Obtenido del contexto por WrapFilter: "+contador+"<br>");
+			}*/
+		//out.println("Obtenido del contexto por WrapFilter: "+context.getAttribute("contador")+"<br>");
+		out.println("<p>FJHurtado</p>");
 		out.println("</body></html>");
 	}
 

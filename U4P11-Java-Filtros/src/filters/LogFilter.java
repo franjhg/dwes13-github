@@ -56,6 +56,7 @@ public class LogFilter implements Filter {
 		if (request instanceof HttpServletRequest) 
 			
 			System.out.println("Petición:" + ((HttpServletRequest)request).getRequestURL().toString());
+		System.out.println("Aplicando filtro de Regidtro");
 		
 		PrintWriter out = response.getWriter();
 		out.println("<p>Mensaje 1: Estamos aplicando el filtro de registro</p>");
