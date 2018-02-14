@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MostrarAnimalesServlet
+ * Servlet implementation class ModificarAnimalServlet
  */
-@WebServlet("/MostrarAnimales")
-public class MostrarAnimalesServlet extends HttpServlet {
+@WebServlet("/ModificarAnimal")
+public class ModificarAnimalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MostrarAnimalesServlet() {
+    public ModificarAnimalServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,6 +33,7 @@ public class MostrarAnimalesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		ServletContext contexto = getServletContext();
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
@@ -48,8 +49,8 @@ public class MostrarAnimalesServlet extends HttpServlet {
 		  Class.forName("org.mariadb.jdbc.Driver").newInstance();
 
 		  // Paso 2: Conectarse a la Base de Datos utilizando la clase Connection
-		  String userName = "alumno";
-		  String password = "alumno";
+		  String userName = "alumno_rw";
+		  String password = "dwes";
 		  String url = "jdbc:mariadb://localhost/animales";
 		  conn = DriverManager.getConnection(url, userName, password);
 
@@ -60,30 +61,15 @@ public class MostrarAnimalesServlet extends HttpServlet {
 		  String consulta = "SELECT * from animal";
 		  ResultSet rset = sentencia.executeQuery(consulta);
 
-//9.
-		 /* if (!rset.next()) { // MALA SOLUCIÓN
-			    out.println("<h3>No hay resultados</p>");
-			}*/
-//----------------	
-//11.
-		  if (!rset.isBeforeFirst() ) {    
-			    out.println("<h3>No hay resultados</p>");
-			}
-		  
-//----------------		  
-		  
-		  // Paso 5: Mostrar resultados
-		  out.println("<table><tr><td>NOMBRE</td><td>ESPECIE</td><td>IMAGEN</td>"
-		  		+ "</tr>");
-		  while (rset.next()) {
-		    out.println("<tr>"
-		    		+ "<td>" + rset.getString("nombre") + "</td>"
-		    		+ "<td>" + rset.getString("especie") + "</td>"
-		    		+ "<td><img width=150px src='"+ ruta + rset.getString("imagen") + "'</td>"
-		    		+ "</tr>");
-		    		
+//13.
+		  String consultaUpdate = "UPDATE animal SET especie='jabali' WHERE nombre='Babe'";
+		  try {
+		  	int nFilas = sentencia.executeUpdate(consultaUpdate);
+		    out.println("<p>"+ nFilas + " filas afectadas</p>");
+		  } catch(Exception e) {
+		    out.println("<p>No se pudo actualizar la base de datos</p>");
 		  }
-		  out.println("</table>");
+		 //out.println("</table>");
 
 		  // Paso 6: Desconexión
 		  if (sentencia != null)
@@ -99,6 +85,8 @@ public class MostrarAnimalesServlet extends HttpServlet {
 		out.println("</body></html>");
 		
 	}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

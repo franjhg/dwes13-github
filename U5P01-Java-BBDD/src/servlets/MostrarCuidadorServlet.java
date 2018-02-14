@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MostrarAnimalesServlet
+ * Servlet implementation class MostrarCuidadorServlet
  */
-@WebServlet("/MostrarAnimales")
-public class MostrarAnimalesServlet extends HttpServlet {
+@WebServlet("/MostrarCuidador")
+public class MostrarCuidadorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MostrarAnimalesServlet() {
+    public MostrarCuidadorServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +33,18 @@ public class MostrarAnimalesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		ServletContext contexto = getServletContext();
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
+		
+		if (request.getParameter("id") != null) {
+		
+		String idcuidador=request.getParameter("id");
+		
+		
 		out.println("<html><head><meta charset='UTF-8'/></head><body>");
 	//Conexion, consulta y muestra de datos
-		
-		String ruta="./img/";
-		
 		Connection conn = null;
 		Statement sentencia = null;
 		try {
@@ -57,33 +61,24 @@ public class MostrarAnimalesServlet extends HttpServlet {
 		  sentencia = conn.createStatement();
 
 		  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
-		  String consulta = "SELECT * from animal";
+		  String consulta = "SELECT * from cuidador WHERE idCuidador='"+idcuidador+"'";
 		  ResultSet rset = sentencia.executeQuery(consulta);
 
-//9.
-		 /* if (!rset.next()) { // MALA SOLUCIÓN
-			    out.println("<h3>No hay resultados</p>");
-			}*/
-//----------------	
-//11.
+
 		  if (!rset.isBeforeFirst() ) {    
 			    out.println("<h3>No hay resultados</p>");
 			}
 		  
-//----------------		  
 		  
 		  // Paso 5: Mostrar resultados
-		  out.println("<table><tr><td>NOMBRE</td><td>ESPECIE</td><td>IMAGEN</td>"
-		  		+ "</tr>");
+		 /* out.println("<table><tr><td>NOMBRE</td><td>ESPECIE</td><td>IMAGEN</td>"
+		  		+ "</tr>");*/
 		  while (rset.next()) {
-		    out.println("<tr>"
-		    		+ "<td>" + rset.getString("nombre") + "</td>"
-		    		+ "<td>" + rset.getString("especie") + "</td>"
-		    		+ "<td><img width=150px src='"+ ruta + rset.getString("imagen") + "'</td>"
-		    		+ "</tr>");
+		    out.println("<h3>" + rset.getString("Nombre") + "</h3><br>"
+		    		+ "<p>" + rset.getString("idCuidador") + "</p>");
 		    		
 		  }
-		  out.println("</table>");
+	
 
 		  // Paso 6: Desconexión
 		  if (sentencia != null)
@@ -97,7 +92,7 @@ public class MostrarAnimalesServlet extends HttpServlet {
 	//-------------------
 		
 		out.println("</body></html>");
-		
+		}
 	}
 
 	/**
