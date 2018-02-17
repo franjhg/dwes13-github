@@ -1,4 +1,4 @@
-package servlets;
+package catalogo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MostrarCuidadorServlet
+ * Servlet implementation class MostrarDiscoServlet
  */
-@WebServlet("/MostrarCuidador")
-public class MostrarCuidadorServlet extends HttpServlet {
+@WebServlet("/MostrarDisco")
+public class MostrarDiscoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MostrarCuidadorServlet() {
+    public MostrarDiscoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +33,26 @@ public class MostrarCuidadorServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		ServletContext contexto = getServletContext();
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		
 		
-		boolean errorIdCuidadorFalta=false;
+		boolean errorIdDiscoFalta=false;
 		
 		
 		if (request.getParameter("id") != null) {
 		
-		String idcuidador=request.getParameter("id");
-		if(idcuidador==null || idcuidador=="") {
-			errorIdCuidadorFalta=true;
+		String paramIdDisco=request.getParameter("id");
+		if(paramIdDisco==null || paramIdDisco=="") {
+			errorIdDiscoFalta=true;
 		}
 		
-		out.println("<html><head><meta charset='UTF-8'/></head><body>");
+		out.println("<html><head><meta charset='UTF-8'/>"
+				+  "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
+				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
+				+ "</head><body>");
 		
 		
 		
@@ -61,53 +63,48 @@ public class MostrarCuidadorServlet extends HttpServlet {
 		  // Paso 1: Cargar el driver JDBC.
 		  Class.forName("org.mariadb.jdbc.Driver").newInstance();
 
-		  // Paso 2: Conectarse a la Base de Datos utilizando la clase Connection
+		  //Paso 2: Conectarse a la Base de Datos utilizando la clase Connection
 		  
-		  //String userName = "alumno";
-		  String userName = contexto.getInitParameter("usr_bd");
-		 // String password = "alumno";
-		  String password =contexto.getInitParameter("psw_bd");
-		  String url = contexto.getInitParameter("url");
-		  //String url = "jdbc:mariadb://localhost/animales";
+		  String userName = "alumno";
+		  String password = "alumno";
+		  String url = "jdbc:mariadb://localhost/catalogo13";
 		  conn = DriverManager.getConnection(url, userName, password);
 
 		  // Paso 3: Crear sentencias SQL, utilizando objetos de tipo Statement
 		  sentencia = conn.createStatement();
 
 		  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
-		 /* String consulta = "SELECT * from cuidador WHERE idCuidador='"+idcuidador+"'";
-		  ResultSet rset = sentencia.executeQuery(consulta);
-
-		  
-		// Paso 5: Mostrar resultados
-		  
-		  if (!rset.isBeforeFirst() ) {    
-			    out.println("<h3>No hay resultados</p>");
-			}
-		  if(errorIdCuidadorFalta==true) {
-				out.println("<h2>Falta Identificador</h2>");
-			}
-		  
-		  rset.next();
-		    out.println("<p>Animales cuidados por " + rset.getString("nombre")+ ":</p>");*/
-		    // TO-DO: código para mostrar los animales
-		//18. 
-		    String consultaAnimales = "SELECT animal.* FROM animal, cuida WHERE (animal.chip = cuida.chipAnimal) AND (cuida.idCuidador = '"+idcuidador+"')";
-		    ResultSet rset = sentencia.executeQuery(consultaAnimales);
+		
+		    String consultaDisco = "SELECT * from obra, autor where obra.IdDisco="+paramIdDisco+" and Autor=IdAutor";
+		    ResultSet rset = sentencia.executeQuery(consultaDisco);
 		    if (!rset.isBeforeFirst() ) {    
-		      out.println("<p>Este cuidador no cuida ningún animal</p>");
+		      out.println("<p>El disco no existe</p>");
 		    }
 		    while (rset.next()) {
-		      out.println("<li>" + rset.getString("nombre") + ", de la especie " + rset.getString("especie") + "</li>");
+		    	//CREAR OBJETOS			  
+				  
+				  String idDisco=rset.getString("obra.IdDisco");
+				  String  autor=rset.getString("autor.Nombre");
+				  String titulo=rset.getString("obra.Titulo");
+				  String imagen=rset.getString("obra.imagen"); 
+				  Disco d=new Disco( idDisco, autor, titulo, imagen);
+				  
+				  					  
+	//----------------	
+				 out.println("<table class='table table-bordered'");
+				 out.println("<tr>"
+				 		+ "<td>TITULO</td>"
+				 		+ "<td>AUTOR</td>"
+				 		+ "<td>PORTADA</td></tr>");
+			    out.println("<tr>"
+			    		+ "<td>"+d.getTitulo()+"</td>"
+			    		+ "<td>"+d.getAutor()+"</td>"
+			    		+  "<td><img src='./img/"+d.getImagen()+"'></td>"
+			    		+ "</tr>");
 		    }
-		    out.println("</ul>");
+		    out.println("</table>");
 		  
-		  /*while (rset.next()) {
-		    out.println("<h3>" + rset.getString("Nombre") + "</h3><br>"
-		    		+ "<p>" + rset.getString("idCuidador") + "</p>");
-		    		
-		  }*/
-	
+		  
 
 		  // Paso 6: Desconexión
 		  if (sentencia != null)
@@ -119,7 +116,7 @@ public class MostrarCuidadorServlet extends HttpServlet {
 		}
 		
 	//-------------------
-		out.println("<a href='./MostrarCuidadores'>Volver</a> ");
+		out.println("<br><br><a href='./MostrarCatalogo'>Volver</a> ");
 		out.println("</body></html>");
 		}
 	}
