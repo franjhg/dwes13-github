@@ -37,24 +37,27 @@ public class MostrarDiscoServlet extends HttpServlet {
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		
-		
+		String paramIdDisco="";
+		String paramIdAutor="";
 		boolean errorIdDiscoFalta=false;
 		
+		if (request.getParameter("id") != null || request.getParameter("id") == "") {
 		
-		if (request.getParameter("id") != null) {
-		
-		String paramIdDisco=request.getParameter("id");
-		if(paramIdDisco==null || paramIdDisco=="") {
-			errorIdDiscoFalta=true;
+			paramIdDisco=request.getParameter("id");
+			/*if(paramIdDisco==null || paramIdDisco=="") {
+				errorIdDiscoFalta=true;
+			}*/
 		}
-		
+		if (request.getParameter("autor") != null || request.getParameter("autor") == "") {
+			paramIdAutor=request.getParameter("autor");
+		}
 		out.println("<html><head><meta charset='UTF-8'/>"
 				+  "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
 				+ "</head><body>");
 		
-		
+		out.println(request.getParameter("id"));
+		out.println(paramIdDisco);
 		
 	//Conexion, consulta y muestra de datos
 		Connection conn = null;
@@ -74,8 +77,16 @@ public class MostrarDiscoServlet extends HttpServlet {
 		  sentencia = conn.createStatement();
 
 		  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
-		
-		    String consultaDisco = "SELECT * from obra, autor where obra.IdDisco="+paramIdDisco+" and Autor=IdAutor";
+		  String consultaDisco ="";	
+		  
+		  if(paramIdDisco==null || paramIdDisco=="") {
+			  consultaDisco = "SELECT * from obra, autor where obra.IdDisco="+paramIdDisco+" and obra.Autor=autor.IdAutor";
+		  }
+		  /*if(paramIdAutor==null || paramIdAutor=="") {
+			  consultaDisco = "SELECT * from obra, autor where autor.Nombre='"+paramIdAutor+"' and Autor=IdAutor";
+		  } */
+		    
+		    
 		    ResultSet rset = sentencia.executeQuery(consultaDisco);
 		    if (!rset.isBeforeFirst() ) {    
 		      out.println("<p>El disco no existe</p>");
@@ -103,7 +114,7 @@ public class MostrarDiscoServlet extends HttpServlet {
 			    		+ "</tr>");
 		    }
 		    out.println("</table>");
-		  
+		    
 		  
 
 		  // Paso 6: Desconexión
@@ -116,9 +127,10 @@ public class MostrarDiscoServlet extends HttpServlet {
 		}
 		
 	//-------------------
+		out.println(paramIdDisco);
 		out.println("<br><br><a href='./MostrarCatalogo'>Volver</a> ");
 		out.println("</body></html>");
-		}
+	//	}
 	}
 
 	/**

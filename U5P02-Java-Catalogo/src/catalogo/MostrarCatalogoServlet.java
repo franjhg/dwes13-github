@@ -43,7 +43,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
 				+ "</head><body>");
 		
-		String usuario=request.getParameter("usuario");
+		/*String usuario=request.getParameter("usuario");
 		String contraseña=request.getParameter("contraseña");
 		
 		if((usuario==null||usuario=="")&&(contraseña==null||contraseña=="")) {
@@ -57,7 +57,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		}
 		
 		// es necesario refrescar 
-		response.sendRedirect(request.getRequestURI());
+		response.sendRedirect(request.getRequestURI());*/
 		
 		//Conexion, consulta y muestra de datos
 		
@@ -111,6 +111,11 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				  }
 				 // out.println("<a href='./MostrarCuidador?id='' '> Pepe</a>");
 				  out.println("</table>");
+				  
+				  out.println("<form action='/U5P02-Java-Catalogo/MostrarDisco' method='post'>"
+							+ "Autor:<input type='text' name:'autor'/><br>"
+							+ "<input type='submit' name='enviar'><br><br>"
+							+ "<form>");
 
 				  // Paso 6: Desconexión
 				  if (sentencia != null)
