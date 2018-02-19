@@ -53,10 +53,10 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				  String userName = "alumno";
 				  String password = "alumno";
 				  String url = "jdbc:mariadb://localhost/catalogo13";
-				  conn = DriverManager.getConnection(url, userName, password);
+				  conn = DriverManager.getConnection(url, userName, password);*/
 
 				  // Paso 3: Crear sentencias SQL, utilizando objetos de tipo Statement
-				  sentencia = conn.createStatement();*/
+				  sentencia = conn.createStatement();
 
 				  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
 				  String consulta = "SELECT * from obra, autor where Autor=IdAutor";
