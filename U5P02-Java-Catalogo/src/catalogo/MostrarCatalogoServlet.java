@@ -36,12 +36,30 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		ServletContext contexto = getServletContext();
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
+		
+		
 		out.println("<html><head><meta charset='UTF-8'/>"
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
 				+ "</head><body>");
 		
-		/*//Conexion, consulta y muestra de datos
+		String usuario=request.getParameter("usuario");
+		String contraseña=request.getParameter("contraseña");
+		
+		if((usuario==null||usuario=="")&&(contraseña==null||contraseña=="")) {
+			out.println("Introduzca su nombre y contraseña de usuario<br>"
+					+ "<form action='/U5P02-Java-Catalogo/MostrarCatalogo' method='post'>"
+					+ "Usuario:<input type='text' name:'usuario'/><br>"
+					+ "Contraseña:<input type='text' name:'contraseña/>'"
+					+ "<input type='submit' name='enviar'><br><br>"
+					+ "<form>");
+			
+		}
+		
+		// es necesario refrescar 
+		response.sendRedirect(request.getRequestURI());
+		
+		//Conexion, consulta y muestra de datos
 		
 				Connection conn = null;
 				Statement sentencia = null;
@@ -53,7 +71,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				  String userName = "alumno";
 				  String password = "alumno";
 				  String url = "jdbc:mariadb://localhost/catalogo13";
-				  conn = DriverManager.getConnection(url, userName, password);*/
+				  conn = DriverManager.getConnection(url, userName, password);
 
 				  // Paso 3: Crear sentencias SQL, utilizando objetos de tipo Statement
 				  sentencia = conn.createStatement();
@@ -94,14 +112,14 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				 // out.println("<a href='./MostrarCuidador?id='' '> Pepe</a>");
 				  out.println("</table>");
 
-				 /* // Paso 6: Desconexión
+				  // Paso 6: Desconexión
 				  if (sentencia != null)
 				    sentencia.close();
 				  if (conn != null)
 				    conn.close();
 				} catch (Exception e) {
 				  e.printStackTrace();
-				}*/
+				}
 				
 			//-------------------
 				
