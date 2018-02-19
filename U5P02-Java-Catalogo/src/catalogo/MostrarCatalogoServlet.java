@@ -41,7 +41,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
 				+ "</head><body>");
 		
-		//Conexion, consulta y muestra de datos
+		/*//Conexion, consulta y muestra de datos
 		
 				Connection conn = null;
 				Statement sentencia = null;
@@ -56,7 +56,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				  conn = DriverManager.getConnection(url, userName, password);
 
 				  // Paso 3: Crear sentencias SQL, utilizando objetos de tipo Statement
-				  sentencia = conn.createStatement();
+				  sentencia = conn.createStatement();*/
 
 				  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
 				  String consulta = "SELECT * from obra, autor where Autor=IdAutor";
@@ -94,14 +94,14 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				 // out.println("<a href='./MostrarCuidador?id='' '> Pepe</a>");
 				  out.println("</table>");
 
-				  // Paso 6: Desconexión
+				 /* // Paso 6: Desconexión
 				  if (sentencia != null)
 				    sentencia.close();
 				  if (conn != null)
 				    conn.close();
 				} catch (Exception e) {
 				  e.printStackTrace();
-				}
+				}*/
 				
 			//-------------------
 				
