@@ -37,6 +37,26 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
 		
+		String paramOrdenAutor="";
+		String query2="";
+		
+		if (request.getParameter("op") != null && request.getParameter("op") != "") {
+			paramOrdenAutor=request.getParameter("op");
+			if(paramOrdenAutor=="1") {
+				query2="ORDER BY obra.Titulo ASC";
+			}
+			if(paramOrdenAutor=="2") {
+				query2="ORDER By obra.Titulo desc";
+			}
+			if(paramOrdenAutor=="3") {
+				query2="ORDER By autor.Nombre asc";
+			}
+			if(paramOrdenAutor=="4") {
+				query2="ORDER  By autor.Nombre desc";
+			}
+		}
+		
+		
 		
 		out.println("<html><head><meta charset='UTF-8'/>"
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
@@ -77,7 +97,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				  sentencia = conn.createStatement();
 
 				  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
-				  String consulta = "SELECT * from obra, autor where Autor=IdAutor";
+				  String consulta = "SELECT * from obra, autor where Autor=IdAutor "+query2+"";
 				  ResultSet rset = sentencia.executeQuery(consulta);
 
 				
@@ -87,8 +107,8 @@ public class MostrarCatalogoServlet extends HttpServlet {
 						  
 				  // Paso 5: Mostrar resultados
 				  out.println("<table class='table table-bordered'>"
-				  		+ "<tr><td>NOMBRE</td>"
-				  		+ "<td>AUTOR</td>"
+				  		+ "<tr><td>NOMBRE  <a href='./MostrarCatalogo?op=1'> &#9650 </a><a href='./MostrarCatalogo?op=2'>&#9660</a></td>"
+				  		+ "<td>AUTOR  <a href='./MostrarCatalogo?op=3'> &#9650 </a><a href='./MostrarCatalogo?op=4'>&#9660</a></td>"
 				  		+ "</tr>");
 				  while (rset.next()) {
 					  
@@ -105,7 +125,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				    out.println("<tr>"
 				    		+ "<td>"+d.getTitulo()+"</td>"
 				    		+ "<td>"+d.getAutor()+"</td>"
-				    		+ "<td><a href='./MostrarDisco?id="+d.getIdDisco() +"'  > " + d.getAutor() + "</a></td>"
+				    		+ "<td><a href='./MostrarDisco?id="+d.getIdDisco() +"'  > " + d.getTitulo() + "</a></td>"
 				    		+ "</tr>");
 				    		
 				  }
@@ -113,7 +133,8 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				  out.println("</table>");
 				  
 				  out.println("<form action='/U5P02-Java-Catalogo/MostrarDisco' method='post'>"
-							+ "Autor:<input type='text' name:'autor'/><br>"
+							+ "Buscar por Autor:<input type='text' name='autor'/><br>"
+							+ "Buscar por Obra:<input type='text' name='obra'/><br>"
 							+ "<input type='submit' name='enviar'><br><br>"
 							+ "<form>");
 

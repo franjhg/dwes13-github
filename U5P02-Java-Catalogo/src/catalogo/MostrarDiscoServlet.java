@@ -39,18 +39,42 @@ public class MostrarDiscoServlet extends HttpServlet {
 		
 		String paramIdDisco="";
 		String paramIdAutor="";
-		boolean errorIdDiscoFalta=false;
+		String paramNombreObra="";
 		
-		if (request.getParameter("id") != null || request.getParameter("id") == "") {
+		
+		boolean IdDiscoSi=false;
+		boolean IdAutorSi=false;
+		String query1="";
+		
+		
+		if (request.getParameter("id") != null && request.getParameter("id") != "") {
 		
 			paramIdDisco=request.getParameter("id");
-			/*if(paramIdDisco==null || paramIdDisco=="") {
-				errorIdDiscoFalta=true;
-			}*/
+			IdDiscoSi=true;
+			query1="obra.IdDisco="+paramIdDisco+"";
 		}
-		if (request.getParameter("autor") != null || request.getParameter("autor") == "") {
+		if (request.getParameter("autor") != null && request.getParameter("autor") != "") {
 			paramIdAutor=request.getParameter("autor");
+			IdAutorSi=true;
+			query1="autor.Nombre LIKE '%"+paramIdAutor+"%'";
 		}
+		if (request.getParameter("obra") != null && request.getParameter("obra") != "") {
+			paramNombreObra=request.getParameter("obra");
+			
+			query1="obra.Titulo='"+paramNombreObra+"'";
+		}
+		/*if (request.getParameter("op") != null && request.getParameter("op") != "") {
+			paramNombreObra=request.getParameter("op");
+			if(paramNombreObra=="1") {
+				query1="autor.Nombre LIKE '%"+paramIdAutor+"%'";
+				query2="ORDER asc";
+			}
+			if(paramNombreObra=="2") {
+				query1="autor.Nombre LIKE '%"+paramIdAutor+"%'";
+				query2="ORDER desc";
+			}
+		}*/
+		
 		out.println("<html><head><meta charset='UTF-8'/>"
 				+  "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
@@ -58,6 +82,7 @@ public class MostrarDiscoServlet extends HttpServlet {
 		
 		out.println(request.getParameter("id"));
 		out.println(paramIdDisco);
+		out.println(paramIdAutor);
 		
 	//Conexion, consulta y muestra de datos
 		Connection conn = null;
@@ -77,20 +102,20 @@ public class MostrarDiscoServlet extends HttpServlet {
 		  sentencia = conn.createStatement();
 
 		  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
-		  String consultaDisco ="";	
+		  String consultaDisco ="SELECT * from obra, autor where "+query1+" AND obra.Autor=autor.IdAutor";	
 		  
-		  if(paramIdDisco==null || paramIdDisco=="") {
-			  consultaDisco = "SELECT * from obra, autor where obra.IdDisco="+paramIdDisco+" and obra.Autor=autor.IdAutor";
-		  }
-		  /*if(paramIdAutor==null || paramIdAutor=="") {
-			  consultaDisco = "SELECT * from obra, autor where autor.Nombre='"+paramIdAutor+"' and Autor=IdAutor";
-		  } */
+		 
 		    
 		    
 		    ResultSet rset = sentencia.executeQuery(consultaDisco);
 		    if (!rset.isBeforeFirst() ) {    
 		      out.println("<p>El disco no existe</p>");
 		    }
+		    out.println("<table class='table table-bordered'");
+			 out.println("<tr>"
+			 		+ "<td>TITULO</td>"
+			 		+ "<td>AUTOR</td>"
+			 		+ "<td>PORTADA</td></tr>");
 		    while (rset.next()) {
 		    	//CREAR OBJETOS			  
 				  
@@ -102,11 +127,7 @@ public class MostrarDiscoServlet extends HttpServlet {
 				  
 				  					  
 	//----------------	
-				 out.println("<table class='table table-bordered'");
-				 out.println("<tr>"
-				 		+ "<td>TITULO</td>"
-				 		+ "<td>AUTOR</td>"
-				 		+ "<td>PORTADA</td></tr>");
+				 
 			    out.println("<tr>"
 			    		+ "<td>"+d.getTitulo()+"</td>"
 			    		+ "<td>"+d.getAutor()+"</td>"
@@ -127,6 +148,10 @@ public class MostrarDiscoServlet extends HttpServlet {
 		}
 		
 	//-------------------
+		
+		
+		
+		
 		out.println(paramIdDisco);
 		out.println("<br><br><a href='./MostrarCatalogo'>Volver</a> ");
 		out.println("</body></html>");
