@@ -61,19 +61,9 @@ public class MostrarDiscoServlet extends HttpServlet {
 		if (request.getParameter("obra") != null && request.getParameter("obra") != "") {
 			paramNombreObra=request.getParameter("obra");
 			
-			query1="obra.Titulo='"+paramNombreObra+"'";
+			query1="obra.Titulo LIKE '%"+paramNombreObra+"%'";
 		}
-		/*if (request.getParameter("op") != null && request.getParameter("op") != "") {
-			paramNombreObra=request.getParameter("op");
-			if(paramNombreObra=="1") {
-				query1="autor.Nombre LIKE '%"+paramIdAutor+"%'";
-				query2="ORDER asc";
-			}
-			if(paramNombreObra=="2") {
-				query1="autor.Nombre LIKE '%"+paramIdAutor+"%'";
-				query2="ORDER desc";
-			}
-		}*/
+		
 		
 		out.println("<html><head><meta charset='UTF-8'/>"
 				+  "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
@@ -111,7 +101,7 @@ public class MostrarDiscoServlet extends HttpServlet {
 		    if (!rset.isBeforeFirst() ) {    
 		      out.println("<p>El disco no existe</p>");
 		    }
-		    out.println("<table class='table table-bordered'");
+		    out.println("<table class='table table-hover'");
 			 out.println("<tr>"
 			 		+ "<td>TITULO</td>"
 			 		+ "<td>AUTOR</td>"

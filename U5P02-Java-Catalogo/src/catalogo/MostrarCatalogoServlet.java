@@ -37,14 +37,17 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
 		
+		
 		String usuario="";
 		String contraseña="";
-		
-		if (request.getParameter("usuario") != null && request.getParameter("usuario") != "" ) {
-				//&& request.getParameter("contraseña") != null && request.getParameter("contraseña") != "") {
-		usuario=request.getParameter("usuario").toString();
-		//contraseña=request.getParameter("contraseña");
 		System.out.println(usuario);
+		System.out.println("Empieza");
+		if (request.getParameter("usuario") != null && request.getParameter("usuario") != "" 
+				&& request.getParameter("contraseña") != null && request.getParameter("contraseña") != "") {
+		usuario=request.getParameter("usuario");
+		contraseña=request.getParameter("contraseña");
+		System.out.println(usuario);
+		System.out.println("llega");
 		}
 		
 		String paramOrdenAutor="";
@@ -78,25 +81,11 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		
 		out.println("Introduzca su nombre y contraseña de usuario<br>"
 				+ "<form action='/U5P02-Java-Catalogo/MostrarCatalogo' method='post'>"
-				+ "Usuario:<input type='text' name:'usuario'/><br>"
-				+ "Contraseña:<input type='text' name:'contraseña/>'"
-				+ "<input type='submit' name='env' value='pp'><br><br>"
-				+ "<form>");
-		/*String usuario=request.getParameter("usuario");
-		String contraseña=request.getParameter("contraseña");
+				+ "Usuario:<input type='text' name='usuario' /><br>"
+				+ "Contraseña:<input type='text' name='contraseña'  />'"
+				+ "<input type='submit' name='env' value='env'><br><br>"
+				+ "</form>");
 		
-		if((usuario==null||usuario=="")&&(contraseña==null||contraseña=="")) {
-			out.println("Introduzca su nombre y contraseña de usuario<br>"
-					+ "<form action='/U5P02-Java-Catalogo/MostrarCatalogo' method='post'>"
-					+ "Usuario:<input type='text' name:'usuario'/><br>"
-					+ "Contraseña:<input type='text' name:'contraseña/>'"
-					+ "<input type='submit' name='enviar'><br><br>"
-					+ "<form>");
-			
-		}
-		
-		/* es necesario refrescar 
-		response.sendRedirect(request.getRequestURI());*/
 		
 		//Conexion, consulta y muestra de datos
 		
@@ -117,10 +106,10 @@ public class MostrarCatalogoServlet extends HttpServlet {
 
 				  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
 				  String consulta = "SELECT * from obra, autor where obra.Autor=autor.IdAutor "+query2+"";
-				  System.out.println(query2);
-				  System.out.println(paramOrdenAutor);
-				  System.out.println(request.getParameter("op"));
-				  System.out.println("SELECT * from obra, autor where obra.Autor=autor.IdAutor "+query2+"");
+				 // System.out.println(query2);
+				 // System.out.println(paramOrdenAutor);
+				 // System.out.println(request.getParameter("op"));
+				 // System.out.println("SELECT * from obra, autor where obra.Autor=autor.IdAutor "+query2+"");
 				  ResultSet rset = sentencia.executeQuery(consulta);
 
 				
@@ -129,9 +118,10 @@ public class MostrarCatalogoServlet extends HttpServlet {
 					}
 						  
 				  // Paso 5: Mostrar resultados
-				  out.println("<table class='table table-bordered'>"
+				  out.println("<table class='table table-bordered table-hover'>"
 				  		+ "<tr><td>TITULO  <a href='./MostrarCatalogo?op=1'> &#9650 </a><a href='./MostrarCatalogo?op=2'>&#9660</a></td>"
 				  		+ "<td>AUTOR  <a href='./MostrarCatalogo?op=3'> &#9650 </a><a href='./MostrarCatalogo?op=4'>&#9660</a></td>"
+				  		+ "<td>DETALLES  (solo usuarios registrados)</td>"
 				  		+ "</tr>");
 				  while (rset.next()) {
 					  
@@ -149,26 +139,21 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				    		+ "<td>"+d.getTitulo()+"</td>"
 				    		+ "<td>"+d.getAutor()+"</td>");
 				    
-				    if((usuario.equals("admin"))/*&&(contraseña.equals("admin"))*/) {
+				    if((usuario.equals("admin"))&&(contraseña.equals("admin"))) {
 			    		out.println( "<td><a href='./MostrarDisco?id="+d.getIdDisco() +"'  > " + d.getTitulo() + "</a></td>"
 			    					+ "</tr>");
 			    	}
 				  }
-				 // out.println("<a href='./MostrarCuidador?id='' '> Pepe</a>");
+				 
 				  	
 				  out.println("</table>");
 				  
 				  out.println("<form action='/U5P02-Java-Catalogo/MostrarDisco' method='post'>"
-							+ "Buscar por Autor:<input type='text' name='autor'/><br>"
-							+ "Buscar por Obra:<input type='text' name='obra'/><br>"
+							+ "Buscar por Autor:<input type='text' name='autor'  placeholder='Nombre del autor'/><br>"
+							+ "Buscar por Obra:<input type='text' name='obra'  placeholder='Nombre del disco'/><br>"
 							+ "<input type='submit' name='enviar'><br><br>"
-							+ "<form><br><br><br><br>");
-				  /*out.println("Introduzca su nombre y contraseña de usuario<br>"
-							+ "<form action='/U5P02-Java-Catalogo/MostrarCatalogo' method='post'>"
-							+ "Usuario:<input type='text' name:'usuario'/><br>"
-							+ "Contraseña:<input type='text' name:'contraseña/>'"
-							+ "<input type='submit' name='env' value='pp'><br><br>"
-							+ "<form>");*/
+							+ "</form><br><br><br><br>");
+				 
 
 				  // Paso 6: Desconexión
 				  if (sentencia != null)
