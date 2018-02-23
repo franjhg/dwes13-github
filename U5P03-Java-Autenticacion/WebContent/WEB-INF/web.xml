@@ -40,6 +40,23 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>CuentaServlet</servlet-name>
+    <servlet-class>servlet.CuentaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CuentaServlet</servlet-name>
+    <url-pattern>/Cuenta</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AltaServlet</servlet-name>
+    <servlet-class>servlets.cuenta.AltaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AltaServlet</servlet-name>
+    <url-pattern>/Alta</url-pattern>
+  </servlet-mapping>
+  
   <filter>
     <filter-name>LoginFilter</filter-name>
     <filter-class>filters.LoginFilter</filter-class>

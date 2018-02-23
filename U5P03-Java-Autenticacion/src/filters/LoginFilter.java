@@ -56,7 +56,7 @@ public class LoginFilter implements Filter {
 			if(session.getAttribute("login")==null || session.getAttribute("login")=="") {
 				errorSesion="La sesion esta iniciada pero no hay usuario";
 			}else {
-				String usuario=(String) session.getAttribute("login");
+				String usu=(String) session.getAttribute("login");
 				Connection conn = null;
   				Statement sentencia = null;
   				try {
@@ -73,7 +73,7 @@ public class LoginFilter implements Filter {
     				  sentencia = conn.createStatement();
 
     				  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
-    				  String consulta = "SELECT * from usuario where login='"+usuario+"' ";
+    				  String consulta = "SELECT * from usuario where login='"+usu+"' ";
     				
     				  ResultSet rset = sentencia.executeQuery(consulta);
     				  

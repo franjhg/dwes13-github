@@ -13,8 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Disco;
+import modelo.Usuario;
 
 /**
  * Servlet implementation class MostrarDiscoServlet
@@ -38,6 +40,8 @@ public class MostrarDiscoServlet extends HttpServlet {
 		ServletContext contexto = getServletContext();
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
+		
+		
 		
 		String paramIdDisco="";
 		String paramIdAutor="";
@@ -144,8 +148,13 @@ public class MostrarDiscoServlet extends HttpServlet {
 		
 		
 		
+		
 		out.println(paramIdDisco);
 		out.println("<br><br><a href='./MostrarCatalogo'>Volver</a> ");
+		HttpSession session = request.getSession();
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		out.println("<h4>Sesión iniciada como <a href='./Cuenta'>" 
+				+ usuario.getNombre() + "</a></h4>");
 		out.println("</body></html>");
 	//	}
 	}

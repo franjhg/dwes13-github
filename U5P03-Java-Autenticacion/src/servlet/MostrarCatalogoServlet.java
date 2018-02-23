@@ -13,8 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Disco;
+import modelo.Usuario;
 
 /**
  * Servlet implementation class MostrarCatalogoServlet
@@ -38,19 +40,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		ServletContext contexto = getServletContext();
 		response.setContentType("text/html;UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		
-		String usuario="";
-		String contraseña="";
-		System.out.println(usuario);
-		System.out.println("Empieza");
-		/*if (request.getParameter("usuario") != null && request.getParameter("usuario") != "" 
-				&& request.getParameter("contraseña") != null && request.getParameter("contraseña") != "") {
-		usuario=request.getParameter("usuario");
-		contraseña=request.getParameter("contraseña");
-		System.out.println(usuario);
-		System.out.println("llega");
-		}*/
+				
 		
 		String paramOrdenAutor="";
 		String query2="";
@@ -79,15 +69,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
 				+ "</head><body>");
 		
-		
-		
-	/*	out.println("Introduzca su nombre y contraseña de usuario<br>"
-				+ "<form action='/U5P02-Java-Catalogo/MostrarCatalogo' method='post'>"
-				+ "Usuario:<input type='text' name='usuario' /><br>"
-				+ "Contraseña:<input type='text' name='contraseña'  />'"
-				+ "<input type='submit' name='env' value='env'><br><br>"
-				+ "</form>");*/
-		
+
 		
 		//Conexion, consulta y muestra de datos
 		
@@ -167,7 +149,10 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				}
 				
 			//-------------------
-				
+				HttpSession session = request.getSession();
+				Usuario usuario = (Usuario) session.getAttribute("usuario");
+				out.println("<h4>Sesión iniciada como <a href='./Cuenta'>" 
+					+ usuario.getNombre() + "</a></h4>");
 				out.println("</body></html>");
 		 
 		 

@@ -87,7 +87,7 @@ public class LoginServlet extends HttpServlet {
 
   				
   				  	if (!rset.isBeforeFirst() ) {    
-  					    out.println("<h3>No hay resultados</p>");
+  					    out.println("<h3>Este usuario no está registrado</p>");
   				  	}else {
   	            	  
   	              
@@ -102,7 +102,7 @@ public class LoginServlet extends HttpServlet {
   								  String nnombre=rset.getString("nombre");
   								  String ndescripcion=rset.getString("descripcion");
   								  boolean nadmin= rset.getBoolean("admin");
-  								  Usuario u = new Usuario(nlogin, npassword, nnombre, ndescripcion, nadmin);
+  								  Usuario usuario = new Usuario(nlogin, npassword, nnombre, ndescripcion, nadmin);
   				  
   								  out.println("Objeto creado");
              
@@ -111,7 +111,8 @@ public class LoginServlet extends HttpServlet {
 				contexto.log(" * Creando sesión en " + request.getRequestURI());
               	// 3. Añadir los atributos de sesión "login" y "usuario"
 				session.setAttribute("login", loginname);
-				session.setAttribute("password", loginpassword);
+				//session.setAttribute("password", loginpassword);
+				session.setAttribute("usuario", usuario);
               	// 4. Redirigir al contenido
 				response.sendRedirect(contexto.getContextPath()+"/MostrarCatalogo");
   				  }
