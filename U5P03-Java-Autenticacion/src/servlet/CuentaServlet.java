@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,7 @@ public class CuentaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletContext contexto = getServletContext();
 		HttpSession session = request.getSession();
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		response.setContentType("text/html;UTF-8");
@@ -45,9 +47,9 @@ public class CuentaServlet extends HttpServlet {
 				+ "<h1>Gestion de Usuario</h1>"
 				+ ""+datosUsuario+""
 				+ "<ul>"
-				+ "<li><a href='./Logout'>Cerrar Sesion</a> </li>"
-				+ "<li><a href='./Baja'>Baja de cuenta</a></li>"
-				+ "<li><a href='./'>Volver</a></li> ");//a href=request.getHeader("Referer")para regresar exactamente a la URL en la que estaba el usuario
+				+ "<li><a href='"+contexto.getContextPath()+"/Logout'>Cerrar Sesion</a> </li>"
+				+ "<li><a href='"+contexto.getContextPath()+"/Baja'>Baja de cuenta</a></li>"
+				+ "<li><a href='"+contexto.getContextPath()+"/'>Volver</a></li> ");//a href=request.getHeader("Referer")para regresar exactamente a la URL en la que estaba el usuario
 		
 		
 	}

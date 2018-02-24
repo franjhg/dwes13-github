@@ -153,7 +153,7 @@ public class MostrarDiscoServlet extends HttpServlet {
 		out.println("<br><br><a href='./MostrarCatalogo'>Volver</a> ");
 		HttpSession session = request.getSession();
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
-		out.println("<h4>Sesión iniciada como <a href='./Cuenta'>" 
+		out.println("<h4>Sesión iniciada como <a href='"+contexto.getContextPath()+"/Cuenta'>" 
 				+ usuario.getNombre() + "</a></h4>");
 		out.println("</body></html>");
 	//	}

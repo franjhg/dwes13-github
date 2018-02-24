@@ -132,12 +132,16 @@ public class MostrarCatalogoServlet extends HttpServlet {
 				  	
 				  out.println("</table>");
 				  
-				  out.println("<form action='/U5P02-Java-Catalogo/MostrarDisco' method='post'>"
+				 out.println("<form action='/U5P02-Java-Catalogo/MostrarDisco' method='post'>"
 							+ "Buscar por Autor:<input type='text' name='autor'  placeholder='Nombre del autor'/><br>"
 							+ "Buscar por Obra:<input type='text' name='obra'  placeholder='Nombre del disco'/><br>"
 							+ "<input type='submit' name='enviar'><br><br>"
 							+ "</form><br><br><br><br>");
-				 
+				/*  out.println("<form action='/U5P03-Java-Autenticacion/MostrarDisco' method='post'>"
+							+ "<div class='form-group'><label> Buscar por Autor:</label><input type='text' name='autor'  placeholder='Nombre del autor'/></div><br>"
+							+ "<div class='form-group'><label> Buscar por Obra:</label><input type='text' name='obra'  placeholder='Nombre del disco'/></div><br>"
+							+ "<button type='submit' name='enviar' class='btn btn-primary'></button><br><br>"
+							+ "</form><br><br><br><br>");*/
 
 				  // Paso 6: Desconexión
 				  if (sentencia != null)
@@ -151,7 +155,7 @@ public class MostrarCatalogoServlet extends HttpServlet {
 			//-------------------
 				HttpSession session = request.getSession();
 				Usuario usuario = (Usuario) session.getAttribute("usuario");
-				out.println("<h4>Sesión iniciada como <a href='./Cuenta'>" 
+				out.println("<h4>Sesión iniciada como <a href='"+contexto.getContextPath()+"/Cuenta'>" 
 					+ usuario.getNombre() + "</a></h4>");
 				out.println("</body></html>");
 		 
