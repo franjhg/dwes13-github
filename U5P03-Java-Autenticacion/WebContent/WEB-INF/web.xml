@@ -56,6 +56,14 @@
     <servlet-name>AltaServlet</servlet-name>
     <url-pattern>/Alta</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>BajaServlet</servlet-name>
+    <servlet-class>servlets.cuenta.BajaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BajaServlet</servlet-name>
+    <url-pattern>/Baja</url-pattern>
+  </servlet-mapping>
   
   <filter>
     <filter-name>LoginFilter</filter-name>
