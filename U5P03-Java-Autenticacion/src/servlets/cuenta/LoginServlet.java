@@ -114,7 +114,7 @@ public class LoginServlet extends HttpServlet {
 				//session.setAttribute("password", loginpassword);
 				session.setAttribute("usuario", usuario);
               	// 4. Redirigir al contenido
-				response.sendRedirect(contexto.getContextPath()+"/MostrarCatalogo");
+				response.sendRedirect(contexto.getContextPath()+"/");
   				  }
   				  
   				  // Paso 6: Desconexión
