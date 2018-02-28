@@ -39,12 +39,35 @@ public class Test1Servlet extends HttpServlet {
 		
 		if(session!=null) {
 			Usuario usu=(Usuario) session.getAttribute("usuario");
-			//Boolean[]respuestas=(Boolean[]) session.getAttribute("respuestas");
+			Boolean[]respuestas=(Boolean[]) session.getAttribute("respuestas");
+			
+			
+			if (request.getMethod().equals("POST")) {
+				// si venimos de enviar el formulario...
+	          // Procesar los campos del formulario 
+			
+				String respuesta1=request.getParameter("pelicula");
+			System.out.println(respuesta1); 	
+			
+			}
 			
 			out.println("<html><head><meta charset='UTF-8'/>"
 					+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
 					+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
 					+ "</head><body>");
+			
+			 out.println("<h3>¿Qué película es más antigua?</h3><br>"
+					 	+ "<form action='" + request.getRequestURI() + "' method='post'>"
+						+ "<input type='radio' name='pelicula' value='1'>CasaBlanca<br>"
+						+ "<input type='radio' name='pelicula' value='0'>Robocop<br>"
+						+ "<input type='radio' name='pelicula' value='0'>Trainspotting<br>"
+						+ "<input type='submit' name='Contestar1'><br><br>"
+						+ "</form><br><br><br><br>");
+
+			 
+			 
+
+		}
 	}
 
 	/**

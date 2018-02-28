@@ -39,7 +39,7 @@ public class BienvenidaServlet extends HttpServlet {
 		
 		if(session!=null) {
 		Usuario usu=(Usuario) session.getAttribute("usuario");
-		//Boolean[]respuestas=(Boolean[]) session.getAttribute("respuestas");
+		//Boolean [] respuestas=(Boolean[]) session.getAttribute("respuestas");
 		
 		out.println("<html><head><meta charset='UTF-8'/>"
 				+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
@@ -48,11 +48,11 @@ public class BienvenidaServlet extends HttpServlet {
 		out.println("<h1>Bienvenido "+usu.getNombre()+"</h1>");
 		out.println("Las reglas son sencillas. Contesta a las preguntas");
 		
-		out.println("<a href=''>Comenzar</a>");
+		out.println("<a href='./Test1'>Comenzar</a>");
 		
 		out.println("</body></html>");
 		}else {
-			out.println("NOOOO");
+			
 			response.sendRedirect(contexto.getContextPath()+"/Login");
 		}
 	}
