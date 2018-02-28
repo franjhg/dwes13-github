@@ -20,7 +20,7 @@ import modelo.Usuario;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/Login")
+@WebServlet(name="/Login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,9 +47,9 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession(false); // L1
 		// si ya había sesión con un valor de usuario válido
 		if (session != null) {
-			if ((session.getAttribute("login") != null)) { // L2
-				response.sendRedirect(contexto.getContextPath() + "/"); // L3
-			}
+			//if ((session.getAttribute("login") != null)) { // L2
+				response.sendRedirect(contexto.getContextPath() + "/Bienvenida"); // L3
+			//}
 		}
 		else { // no hay sesión iniciada
 			if (request.getMethod().equals("POST")) {
@@ -103,18 +103,20 @@ public class LoginServlet extends HttpServlet {
   								  String ndescripcion=rset.getString("descripcion");
   								  boolean nadmin= rset.getBoolean("admin");
   								  Usuario usuario = new Usuario(nlogin, npassword, nnombre, ndescripcion, nadmin);
+  								  
+  								  boolean[]respuestas=new boolean[3];
   				  
   								  out.println("Objeto creado");
              
 				// 2. Crear una nueva sesión y avisarlo en un mensaje de log:
               	session = request.getSession(); // en este caso sin "false" para que se cree
 				contexto.log(" * Creando sesión en " + request.getRequestURI());
-              	// 3. Añadir los atributos de sesión "login" y "usuario"
-				session.setAttribute("login", loginname);
+              	// 3. Añadir los atributos de sesión "arr de Respuestas" y "usuario"
+				session.setAttribute("respuestas", respuestas);
 				//session.setAttribute("password", loginpassword);
 				session.setAttribute("usuario", usuario);
               	// 4. Redirigir al contenido
-				response.sendRedirect(contexto.getContextPath()+"/");
+				response.sendRedirect(contexto.getContextPath()+"/Bienvenida");
   				  }
   				  
   				  // Paso 6: Desconexión

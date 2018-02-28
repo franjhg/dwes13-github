@@ -80,7 +80,7 @@ public class AltaServlet extends HttpServlet {
 		 // System.out.println("SELECT * from obra, autor where obra.Autor=autor.IdAutor "+query2+"");
 		  ResultSet rset = sentencia.executeQuery(consultaAlta);	
         
-        
+		  response.sendRedirect(contexto.getContextPath()+"/MostrarCatalogo");
 		
 		 if (sentencia != null)
 			    sentencia.close();

@@ -1,6 +1,7 @@
-package servlets.cuenta;
+package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,17 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.Usuario;
+
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class Test1Servlet
  */
-@WebServlet(name="/Logout")
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name="/Test1")
+public class Test1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public Test1Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,13 +32,21 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		ServletContext contexto=getServletContext();
+		ServletContext contexto = getServletContext();
+		HttpSession session = request.getSession(false);
+		response.setContentType("text/html;UTF-8");
+		PrintWriter out = response.getWriter();
 		
-		session.invalidate();
-		response.sendRedirect(contexto.getContextPath()+"/Login");
-	
+		if(session!=null) {
+			Usuario usu=(Usuario) session.getAttribute("usuario");
+			//Boolean[]respuestas=(Boolean[]) session.getAttribute("respuestas");
+			
+			out.println("<html><head><meta charset='UTF-8'/>"
+					+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>"
+					+ "<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>"
+					+ "</head><body>");
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

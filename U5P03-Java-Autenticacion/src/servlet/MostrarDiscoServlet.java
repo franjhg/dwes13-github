@@ -150,7 +150,8 @@ public class MostrarDiscoServlet extends HttpServlet {
 		
 		
 		out.println(paramIdDisco);
-		out.println("<br><br><a href='./MostrarCatalogo'>Volver</a> ");
+		out.println("<br><br><a href='"+request.getHeader("Referer")+"'>Volver</a> ");
+		/*out.println("<br><br><a href='"+contexto.getContextPath()+"/'>Volver</a> ");*/
 		HttpSession session = request.getSession();
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		out.println("<h4>Sesión iniciada como <a href='"+contexto.getContextPath()+"/Cuenta'>" 

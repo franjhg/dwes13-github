@@ -19,7 +19,7 @@ import modelo.Usuario;
 /**
  * Servlet implementation class BajaServlet
  */
-@WebServlet("/Baja")
+@WebServlet(name="/Baja")
 public class BajaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
