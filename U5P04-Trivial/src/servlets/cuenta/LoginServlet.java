@@ -104,7 +104,8 @@ public class LoginServlet extends HttpServlet {
   								  boolean nadmin= rset.getBoolean("admin");
   								  Usuario usuario = new Usuario(nlogin, npassword, nnombre, ndescripcion, nadmin);
   								  
-  								  Boolean[]respuestas=new Boolean[3];
+  								  //Boolean[]respuestas=new Boolean[3];
+  								  Boolean[]respuestas= {null, null,null};
   				  
   								  out.println("Objeto creado");
              

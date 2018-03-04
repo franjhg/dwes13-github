@@ -47,7 +47,8 @@ public class Test1Servlet extends HttpServlet {
 	          // Procesar los campos del formulario 
 			
 				String respuesta1=request.getParameter("pelicula");
-			System.out.println(respuesta1); 	
+			System.out.println(respuesta1); 
+			
 				if(respuesta1.equals("1")) {
 					respuestas[0]=true;
 				}

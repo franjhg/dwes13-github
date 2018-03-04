@@ -51,13 +51,13 @@ public class Test2Servlet extends HttpServlet {
 				String respuesta1=request.getParameter("pelicula");
 			System.out.println(respuesta1); 	
 			if(respuesta1.equals("1")) {
-				respuestas[0]=true;
+				respuestas[1]=true;
 			}
 			if(respuesta1.equals("0")) {
-				respuestas[0]=false;
+				respuestas[1]=false;
 			}
 			if(respuesta1.equals("null")) {
-				respuestas[0]=null;
+				respuestas[1]=null;
 			}
 			
 			session.setAttribute("respuestas", respuestas);
@@ -75,7 +75,7 @@ public class Test2Servlet extends HttpServlet {
 						+ "<input type='radio' name='pelicula' value='0'>CasaBlanca<br>"
 						+ "<input type='radio' name='pelicula' value='0'>Robocop<br>"
 						+ "<input type='radio' name='pelicula' value='1'>Trainspotting<br>"
-						+ "<input type='submit' name='Contestar1'><br><br>"
+						+ "<input type='submit' name='Contestar2'><br><br>"
 						+ "</form><br><br><br><br>");
 
 			 
