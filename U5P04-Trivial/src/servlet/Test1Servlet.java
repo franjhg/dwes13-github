@@ -52,10 +52,10 @@ public class Test1Servlet extends HttpServlet {
 				if(respuesta1.equals("1")) {
 					respuestas[0]=true;
 				}
-				if(respuesta1.equals("0")) {
+				else if(respuesta1.equals("0")) {
 					respuestas[0]=false;
-				}
-				if(respuesta1.equals("null")) {
+				}else {
+				//if(respuesta1.equals(null)) {
 					respuestas[0]=null;
 				}
 				

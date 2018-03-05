@@ -108,10 +108,10 @@
     <filter-name>TestFilter</filter-name>
     <filter-class>filters.TestFilter</filter-class>
   </filter>
-  <filter-mapping>
+ <!--  <filter-mapping>
     <filter-name>TestFilter</filter-name>
     <url-pattern>/Test1</url-pattern>
     <url-pattern>/Test2</url-pattern>
     <url-pattern>/Test3</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
 </web-app>
