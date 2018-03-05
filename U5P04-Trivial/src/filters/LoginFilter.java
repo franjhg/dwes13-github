@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.Usuario;
+
 /**
  * Servlet Filter implementation class LoginFilter
  */
@@ -52,10 +54,10 @@ public class LoginFilter implements Filter {
 		// comprobamos posibles errores:
 	  	// a. Aviso: intento de acceso sin sesión iniciada
 		if(session !=null) {
-			if(session.getAttribute("login")==null || session.getAttribute("login")=="") {
+			if(session.getAttribute("usuario")==null || session.getAttribute("usuario")=="") {
 				errorSesion="La sesion esta iniciada pero no hay usuario";
 			}else {
-				String usu=(String) session.getAttribute("login");
+				Usuario usu=(Usuario) session.getAttribute("usuario");
 				Connection conn = null;
   				Statement sentencia = null;
   				try {
@@ -72,7 +74,7 @@ public class LoginFilter implements Filter {
     				  sentencia = conn.createStatement();
 
     				  // Paso 4: Ejecutar la sentencia SQL a través de los objetos Statement
-    				  String consulta = "SELECT * from usuario where login='"+usu+"' ";
+    				  String consulta = "SELECT * from usuario where login='"+usu.getLogin()+"' ";
     				
     				  ResultSet rset = sentencia.executeQuery(consulta);
     				  
