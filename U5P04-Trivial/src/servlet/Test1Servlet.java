@@ -48,16 +48,14 @@ public class Test1Servlet extends HttpServlet {
 			
 				String respuesta1=request.getParameter("pelicula");
 			System.out.println(respuesta1); 
-			
+			if(respuesta1!=null) {
 				if(respuesta1.equals("1")) {
 					respuestas[0]=true;
 				}
-				else if(respuesta1.equals("0")) {
+				if(respuesta1.equals("0")) {
 					respuestas[0]=false;
-				}else {
-				//if(respuesta1.equals(null)) {
-					respuestas[0]=null;
 				}
+			}
 				
 				session.setAttribute("respuestas", respuestas);
 				response.sendRedirect(contexto.getContextPath()+"/Test2");

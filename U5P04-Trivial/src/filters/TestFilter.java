@@ -64,9 +64,11 @@ public class TestFilter implements Filter {
 		 out.println("<h3>ResultadosServlet</h3><br>");
 		 	for (int i=0;i<respuestas.length;i++) {	
 		 		
-		 		if((respuestas[i]!=true && respuestas[i]!=false)) {
+		 		//if((respuestas[i]!=true && respuestas[i]!=false)) {
+		 		if(respuestas[i]!=null) {
+		 		}else {
 		 			contnull++;
-		 			response.sendRedirect(contexto.getContextPath()+"/Test'+[i]+'");
+		 			response.sendRedirect(contexto.getContextPath()+"/Test"+i);
 		 		}
 			}
 		 	if(contnull==0) {

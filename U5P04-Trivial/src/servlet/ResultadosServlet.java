@@ -44,6 +44,7 @@ public class ResultadosServlet extends HttpServlet {
 		if(session!=null) {
 			Usuario usu=(Usuario) session.getAttribute("usuario");
 			Boolean[]respuestas=(Boolean[]) session.getAttribute("respuestas");
+			
 			System.out.println("arr0="+respuestas[0]);
 			System.out.println("arr1="+respuestas[1]);
 			System.out.println("arr2="+respuestas[2]);
@@ -55,15 +56,18 @@ public class ResultadosServlet extends HttpServlet {
 		
 		 out.println("<h3>ResultadosServlet</h3><br>");
 		 	for (int i=0;i<respuestas.length;i++) {	
+		 	if(respuestas[i]!=null) {
+		 		
 		 		if(respuestas[i].equals(true)) {
 		 			conttrue++;
 		 		}
 		 		if(respuestas[i].equals(false)) {
 		 			contfalse++;
 		 		}
-		 		if(respuestas[i].equals(null)) {
+		 	}else {
+		 		//if(respuestas[i].equals(null)) {
 		 			contnull++;
-		 			response.sendRedirect(contexto.getContextPath()+"/Test'+[i]+'");
+		 			response.sendRedirect(contexto.getContextPath()+"/Test"+i);
 		 		}
 			}
 		 	

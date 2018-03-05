@@ -50,15 +50,15 @@ public class Test2Servlet extends HttpServlet {
 			
 				String respuesta1=request.getParameter("pelicula");
 			System.out.println(respuesta1); 	
+			if(respuesta1!=null) {
 			if(respuesta1.equals("1")) {
 				respuestas[1]=true;
 			}
 			if(respuesta1.equals("0")) {
 				respuestas[1]=false;
 			}
-			if(respuesta1.equals("null")) {
-				respuestas[1]=null;
 			}
+			
 			
 			session.setAttribute("respuestas", respuestas);
 			response.sendRedirect(contexto.getContextPath()+"/Test3");
